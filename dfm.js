@@ -8,8 +8,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if (newProcessCard) {
         newProcessCard.addEventListener('click', function() {
             console.log('Starting new DFM process...');
-            // Placeholder for future navigation
-            alert('Starting New DFM Process - This will navigate to the new process page (coming soon)');
+            // Navigate to DFM configuration page
+            window.location.href = 'dfm-config.html';
         });
     }
     
