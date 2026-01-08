@@ -59,9 +59,8 @@ document.addEventListener('DOMContentLoaded', function() {
         proceedBtn.addEventListener('click', function() {
             if (config.currentStep === config.totalSteps) {
                 console.log('All selections completed:', config.selections);
-                alert('Configuration complete! Proceeding to next step...\n\n' + JSON.stringify(config.selections, null, 2));
-                // Here you would navigate to the next page
-                // window.location.href = 'next-page.html';
+                // Navigate to Project Details page
+                window.location.href = 'project-details.html';
             }
         });
     }

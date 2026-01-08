@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Details - Schaeffler DPFC</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="project-details-styles.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <button class="toggle-btn" id="toggleBtn">☰</button>
+        <nav>
+            <a href="index.html" class="nav-item">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+                </svg>
+                <span>Home</span>
+            </a>
+            <a href="#" class="nav-item">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"/>
+                </svg>
+                <span>Catalog</span>
+            </a>
+            <a href="#" class="nav-item">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+                </svg>
+                <span>My Processes</span>
+            </a>
+            <a href="#" class="nav-item">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/>
+                </svg>
+                <span>Feedback</span>
+            </a>
+            <a href="#" class="nav-item">
+                <svg class="icon" viewBox="0 0 24 24">
+                    <path d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z"/>
+                </svg>
+                <span>Support</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <h1>Schaeffler DPFC</h1>
+        <div class="header-right">
+            <svg class="login-icon" viewBox="0 0 24 24">
+                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+            </svg>
+            <img id="logo" src="assets/schaeffler-logo.jpg" alt="Schaeffler" onerror="handleLogoError(this)">
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="content-wrapper">
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+            <a href="index.html">Home</a> › 
+            <a href="dfm.html">Design for Manufacturing</a> › 
+            <a href="dfm-config.html">Configuration</a> › 
+            <span>Project Details</span>
+        </div>
+
+        <!-- Project Details Form -->
+        <div class="project-details-container">
+            <div class="page-header">
+                <svg class="page-icon" viewBox="0 0 24 24">
+                    <path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm7 16H5V5h2v3h10V5h2v14z"/>
+                </svg>
+                <div>
+                    <h2>Project Details</h2>
+                    <p class="subtitle">Enter comprehensive project information for the DFM process</p>
+                </div>
+            </div>
+
+            <form id="projectDetailsForm" class="details-form">
+                <!-- Basic Information Section -->
+                <div class="form-section">
+                    <h3 class="section-title">
+                        <span class="section-number">1</span>
+                        Basic Information
+                    </h3>
+                    <div class="form-grid">
+                        <div class="form-field">
+                            <label for="projectType">
+                                <span class="label-text">Project Type</span>
+                                <span class="required">*</span>
+                            </label>
+                            <input type="text" id="projectType" name="projectType" placeholder="Enter project type (e.g., VEP, PEP1)" required>
+                            <span class="helper-text">Specify the project classification type</span>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="nplmNumber">
+                                <span class="label-text">NPLM Number</span>
+                                <span class="required">*</span>
+                            </label>
+                            <input type="text" id="nplmNumber" name="nplmNumber" placeholder="Enter NPLM identifier" required>
+                            <span class="helper-text">New Product Launch Management number</span>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="epsrDg">
+                                <span class="label-text">ePSR DG</span>
+                                <span class="required">*</span>
+                            </label>
+                            <input type="text" id="epsrDg" name="epsrDg" placeholder="Enter ePSR DG reference" required>
+                            <span class="helper-text">Electronic Product Safety Report - Design Gateway</span>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="elsrNumber">
+                                <span class="label-text">eLSR Number</span>
+                                <span class="required">*</span>
+                            </label>
+                            <input type="text" id="elsrNumber" name="elsrNumber" placeholder="Enter eLSR identifier" required>
+                            <span class="helper-text">Electronic Launch System Readiness number</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product Information Section -->
+                <div class="form-section">
+                    <h3 class="section-title">
+                        <span class="section-number">2</span>
+                        Product & Manufacturing Details
+                    </h3>
+                    <div class="form-grid">
+                        <div class="form-field">
+                            <label for="partNumber">
+                                <span class="label-text">Part Number</span>
+                                <span class="required">*</span>
+                            </label>
+                            <input type="text" id="partNumber" name="partNumber" placeholder="Enter part identification number" required>
+                            <span class="helper-text">Unique part identifier for manufacturing</span>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="mfrLocation">
+                                <span class="label-text">Manufacturing Location</span>
+                                <span class="required">*</span>
+                            </label>
+                            <input type="text" id="mfrLocation" name="mfrLocation" placeholder="Enter manufacturing facility location" required>
+                            <span class="helper-text">Primary manufacturing plant location</span>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="customerName">
+                                <span class="label-text">Customer Name</span>
+                                <span class="required">*</span>
+                            </label>
+                            <input type="text" id="customerName" name="customerName" placeholder="Enter customer organization name" required>
+                            <span class="helper-text">End customer or OEM name</span>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="subassemblies">
+                                <span class="label-text">Number of Subassemblies</span>
+                                <span class="required">*</span>
+                            </label>
+                            <input type="number" id="subassemblies" name="subassemblies" placeholder="Enter count" min="0" required>
+                            <span class="helper-text">Total count of subassemblies in the product</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timeline Section -->
+                <div class="form-section">
+                    <h3 class="section-title">
+                        <span class="section-number">3</span>
+                        Project Timeline - Gate Milestones
+                    </h3>
+                    <div class="timeline-grid">
+                        <!-- G40 DFM Timeline -->
+                        <div class="timeline-group">
+                            <h4 class="timeline-heading">
+                                <span class="gate-badge">G40</span>
+                                Gate 40 - DFM Phase
+                            </h4>
+                            <div class="date-fields">
+                                <div class="form-field">
+                                    <label for="startDateG40">
+                                        <span class="label-text">Start Date</span>
+                                        <span class="required">*</span>
+                                    </label>
+                                    <input type="date" id="startDateG40" name="startDateG40" required>
+                                    <span class="helper-text">Project initiation date for Gate 40</span>
+                                </div>
+
+                                <div class="form-field">
+                                    <label for="completionDateG40">
+                                        <span class="label-text">Completion Date</span>
+                                        <span class="required">*</span>
+                                    </label>
+                                    <input type="date" id="completionDateG40" name="completionDateG40" required>
+                                    <span class="helper-text">Target completion date for Gate 40</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- G50 DFM Timeline -->
+                        <div class="timeline-group">
+                            <h4 class="timeline-heading">
+                                <span class="gate-badge">G50</span>
+                                Gate 50 - DFM Phase
+                            </h4>
+                            <div class="date-fields">
+                                <div class="form-field">
+                                    <label for="startDateG50">
+                                        <span class="label-text">Start Date</span>
+                                        <span class="required">*</span>
+                                    </label>
+                                    <input type="date" id="startDateG50" name="startDateG50" required>
+                                    <span class="helper-text">Project initiation date for Gate 50</span>
+                                </div>
+
+                                <div class="form-field">
+                                    <label for="completionDateG50">
+                                        <span class="label-text">Completion Date</span>
+                                        <span class="required">*</span>
+                                    </label>
+                                    <input type="date" id="completionDateG50" name="completionDateG50" required>
+                                    <span class="helper-text">Target completion date for Gate 50</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="window.location.href='dfm-config.html'">
+                        <svg viewBox="0 0 24 24" class="btn-icon">
+                            <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+                        </svg>
+                        Back
+                    </button>
+                    <button type="submit" class="btn btn-primary" id="submitBtn">
+                        <svg viewBox="0 0 24 24" class="btn-icon">
+                            <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+                        </svg>
+                        Save & Continue
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script src="project-details.js"></script>
+</body>
+</html>
