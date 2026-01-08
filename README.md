@@ -23,6 +23,17 @@ A desktop application for Schaeffler DPFC built with Electron.
 npm install
 ```
 
+### Adding the Logo (Optional)
+
+For better performance and offline usage, download the Schaeffler logo and place it in the `assets` folder:
+
+```bash
+mkdir -p assets
+curl -o assets/schaeffler-logo.jpg "https://acam.rwth-campus.com/wp-content/uploads/sites/11/2024/05/Schaeffler-Logo.jpg"
+```
+
+The application will automatically use the local logo if available, otherwise it will fall back to the external URL.
+
 ### Running the Application
 
 ```bash
