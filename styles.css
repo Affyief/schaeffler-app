@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #ffffff;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
     color: #333;
     overflow: hidden;
 }
@@ -19,14 +19,15 @@ body {
 
 /* Header Styles */
 .header {
-    background-color: #ffffff;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
     height: 70px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 30px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     z-index: 100;
+    border-bottom: 1px solid rgba(8, 149, 76, 0.1);
 }
 
 .header-left {
@@ -44,6 +45,7 @@ body {
     font-weight: 600;
     color: #08954C;
     letter-spacing: 0.5px;
+    text-shadow: 0 2px 4px rgba(8, 149, 76, 0.1);
 }
 
 .header-right {
@@ -60,13 +62,16 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 8px;
+    padding: 10px;
     border-radius: 50%;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
+    background: rgba(8, 149, 76, 0.05);
 }
 
 .login-icon:hover {
-    background-color: #f0f0f0;
+    background: rgba(8, 149, 76, 0.15);
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(8, 149, 76, 0.2);
 }
 
 .logo {
@@ -187,20 +192,37 @@ body {
     flex: 1;
     padding: 40px;
     overflow-y: auto;
-    background-color: #ffffff;
+    background: transparent;
 }
 
 .content-wrapper {
     max-width: 1200px;
     margin: 0 auto;
+    animation: fadeIn 0.6s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .content-title {
-    font-size: 32px;
-    font-weight: 600;
+    font-size: 36px;
+    font-weight: 700;
     color: #2c3e50;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
     text-align: center;
+    background: linear-gradient(135deg, #08954C 0%, #06703a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none;
 }
 
 /* Icon Grid */
@@ -212,39 +234,105 @@ body {
 }
 
 .icon-card {
-    background-color: #ffffff;
-    border-radius: 8px;
-    padding: 30px 20px;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border-radius: 12px;
+    padding: 35px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 180px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
+    min-height: 190px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     cursor: pointer;
+    border: 1px solid rgba(8, 149, 76, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.icon-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(8, 149, 76, 0.05) 0%, rgba(8, 149, 76, 0.02) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.icon-card:hover::before {
+    opacity: 1;
 }
 
 .icon-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 32px rgba(8, 149, 76, 0.2);
+    border-color: rgba(8, 149, 76, 0.3);
 }
 
 .icon-placeholder {
     color: #08954C;
-    margin-bottom: 15px;
+    margin-bottom: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: transform 0.4s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.icon-card:hover .icon-placeholder {
+    transform: scale(1.1) rotate(5deg);
 }
 
 .icon-caption {
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 600;
     color: #2c3e50;
     text-align: center;
     line-height: 1.4;
     max-width: 100%;
+    position: relative;
+    z-index: 1;
+    transition: color 0.3s ease;
+}
+
+.icon-card:hover .icon-caption {
+    color: #08954C;
+}
+
+/* Staggered animation for icon cards */
+.icon-card:nth-child(1) {
+    animation: slideInUp 0.6s ease-out 0.1s both;
+}
+
+.icon-card:nth-child(2) {
+    animation: slideInUp 0.6s ease-out 0.2s both;
+}
+
+.icon-card:nth-child(3) {
+    animation: slideInUp 0.6s ease-out 0.3s both;
+}
+
+.icon-card:nth-child(4) {
+    animation: slideInUp 0.6s ease-out 0.4s both;
+}
+
+.icon-card:nth-child(5) {
+    animation: slideInUp 0.6s ease-out 0.5s both;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Responsive Design */
