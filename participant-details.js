@@ -248,18 +248,20 @@ function proceedToNext() {
         return;
     }
     
-    // Store data in localStorage (for demo purposes)
+    // Store data in localStorage
     localStorage.setItem('dfm_participants', JSON.stringify(participants));
     
-    // Show success message
-    const participantWord = participants.length === 1 ? 'participant' : 'participants';
-    alert(`✓ Successfully saved ${participants.length} ${participantWord}!\n\nParticipant details have been recorded. Proceeding to next step...`);
+    // Show success message and navigate
+    const proceedBtn = document.getElementById('proceedBtn');
+    proceedBtn.textContent = 'Saved! Redirecting...';
+    proceedBtn.disabled = true;
     
-    // In a real application, this would navigate to the next page
     console.log('Saved participants:', participants);
     
-    // Placeholder for next page navigation
-    // window.location.href = 'next-page.html';
+    // Navigate to sub-assembly details page
+    setTimeout(() => {
+        window.location.href = 'subassembly-details.html';
+    }, 1500);
 }
 
 // Logo error handling
