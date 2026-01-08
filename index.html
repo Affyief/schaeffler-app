@@ -22,11 +22,10 @@
                     </svg>
                 </div>
                 <div class="logo">
-                    <!-- Logo will load from local assets folder, or fall back to external URL, or show placeholder text -->
                     <img src="assets/schaeffler-logo.jpg" 
                          alt="Schaeffler Logo" 
                          class="logo-image"
-                         onerror="this.src='https://acam.rwth-campus.com/wp-content/uploads/sites/11/2024/05/Schaeffler-Logo.jpg'; this.onerror=function(){this.style.display='none'; this.nextElementSibling.style.display='block'};">
+                         loading="eager">
                     <div class="logo-placeholder" style="display: none;">Schaeffler</div>
                 </div>
             </div>

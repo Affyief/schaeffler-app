@@ -38,4 +38,23 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Login icon clicked');
         // Placeholder for future login functionality
     });
+    
+    // Logo image error handling
+    const logoImage = document.querySelector('.logo-image');
+    const logoPlaceholder = document.querySelector('.logo-placeholder');
+    
+    if (logoImage) {
+        logoImage.addEventListener('error', function handleLogoError() {
+            // First error: try external URL
+            if (this.src.includes('assets/')) {
+                this.src = 'https://acam.rwth-campus.com/wp-content/uploads/sites/11/2024/05/Schaeffler-Logo.jpg';
+            } else {
+                // Second error: show placeholder
+                this.style.display = 'none';
+                if (logoPlaceholder) {
+                    logoPlaceholder.style.display = 'block';
+                }
+            }
+        });
+    }
 });
