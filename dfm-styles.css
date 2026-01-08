@@ -98,6 +98,58 @@
     margin-bottom: 0;
 }
 
+.description-text strong {
+    color: #08954C;
+    font-weight: 600;
+}
+
+/* DFM Sections */
+.dfm-definition,
+.dfm-focus,
+.dfm-usage {
+    margin-top: 30px;
+    padding: 25px;
+    background: rgba(8, 149, 76, 0.03);
+    border-left: 4px solid #08954C;
+    border-radius: 8px;
+}
+
+.description-card h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #08954C;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.dfm-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 15px 0 0 0;
+}
+
+.dfm-list li {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 12px;
+    padding-left: 30px;
+    position: relative;
+}
+
+.dfm-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #08954C;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.dfm-list li:last-child {
+    margin-bottom: 0;
+}
+
 @keyframes fadeInUp {
     from {
         opacity: 0;
