@@ -154,10 +154,10 @@ document.addEventListener('DOMContentLoaded', function() {
             alert('Project Details Saved Successfully!\n\nProject Type: ' + formData.projectType +
                   '\nNPLM Number: ' + formData.nplmNumber +
                   '\nCustomer: ' + formData.customerName +
-                  '\n\nProceeding to next step...');
+                  '\n\nProceeding to Participant Details...');
             
-            // Navigate to next page (placeholder)
-            // window.location.href = 'next-step.html';
+            // Navigate to participant details page
+            window.location.href = 'participant-details.html';
         }, 500);
     }
 
