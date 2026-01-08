@@ -44,28 +44,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const logoPlaceholder = document.querySelector('.logo-placeholder');
     
     if (logoImage) {
-        let errorCount = 0;
-        const maxRetries = 1;
+        let currentAttempt = 0;
+        const fallbackUrl = 'https://acam.rwth-campus.com/wp-content/uploads/sites/11/2024/05/Schaeffler-Logo.jpg';
         
         logoImage.addEventListener('error', function handleLogoError() {
-            errorCount++;
+            currentAttempt++;
             
-            // Prevent infinite loops
-            if (errorCount > maxRetries) {
-                // Show placeholder after max retries
-                this.style.display = 'none';
-                if (logoPlaceholder) {
-                    logoPlaceholder.style.display = 'block';
-                }
-                return;
-            }
-            
-            // First error: try external URL
-            if (this.src.includes('assets/')) {
+            if (currentAttempt === 1) {
+                // First error: try external URL
                 console.log('Local logo not found, attempting to load from external URL');
-                this.src = 'https://acam.rwth-campus.com/wp-content/uploads/sites/11/2024/05/Schaeffler-Logo.jpg';
+                this.src = fallbackUrl;
             } else {
-                // Second error: show placeholder
+                // Second error or beyond: show placeholder
                 console.log('External logo failed to load, showing placeholder');
                 this.style.display = 'none';
                 if (logoPlaceholder) {
