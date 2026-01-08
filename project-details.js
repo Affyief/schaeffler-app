@@ -146,19 +146,16 @@ document.addEventListener('DOMContentLoaded', function() {
         // Log form data (in production, this would be sent to server)
         console.log('Project Details Submitted:', formData);
 
-        // Show success message
-        showNotification('Project details saved successfully!', 'success');
+        // Store form data in localStorage for future reference
+        localStorage.setItem('projectDetails', JSON.stringify(formData));
 
-        // Simulate saving and navigation
+        // Show success message
+        showNotification('Project details saved successfully! Navigating to participant details...', 'success');
+
+        // Navigate to participant details page
         setTimeout(() => {
-            alert('Project Details Saved Successfully!\n\nProject Type: ' + formData.projectType +
-                  '\nNPLM Number: ' + formData.nplmNumber +
-                  '\nCustomer: ' + formData.customerName +
-                  '\n\nProceeding to Participant Details...');
-            
-            // Navigate to participant details page
             window.location.href = 'participant-details.html';
-        }, 500);
+        }, 1500);
     }
 
     // Show notification (simple implementation)
