@@ -28,7 +28,14 @@ document.addEventListener('DOMContentLoaded', function() {
         card.addEventListener('click', function() {
             const caption = this.querySelector('.icon-caption').textContent;
             console.log('Icon clicked:', caption);
-            // Placeholder for future action
+            
+            // Navigate to specific pages based on card clicked
+            if (caption === 'Design for Manufacturing') {
+                window.location.href = 'dfm.html';
+            } else {
+                // Placeholder for future pages
+                console.log('Navigation to', caption, 'page - coming soon');
+            }
         });
     });
     
