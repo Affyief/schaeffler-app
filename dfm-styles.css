@@ -1,13 +1,26 @@
 /* DFM Page Specific Styles */
 
+/* Ensure no scrolling - fit everything in one window */
+.main-content {
+    overflow: hidden;
+}
+
+.content-wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
 /* Breadcrumb */
 .breadcrumb {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 30px;
-    font-size: 14px;
+    margin-bottom: 15px;
+    font-size: 13px;
     animation: fadeIn 0.4s ease-in;
+    flex-shrink: 0;
 }
 
 .breadcrumb-link {
@@ -32,15 +45,16 @@
 
 /* Page Title */
 .page-title {
-    font-size: 42px;
+    font-size: 32px;
     font-weight: 700;
     color: #2c3e50;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     background: linear-gradient(135deg, #08954C 0%, #06703a 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     animation: slideInDown 0.6s ease-out;
+    flex-shrink: 0;
 }
 
 @keyframes slideInDown {
@@ -54,44 +68,81 @@
     }
 }
 
-/* Description Card */
+/* Two Column Layout */
+.dfm-layout {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 30px;
+    flex: 1;
+    overflow: hidden;
+    animation: fadeInUp 0.6s ease-out 0.2s both;
+}
+
+/* Left Column: Description */
+.description-column {
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+/* Custom scrollbar for description column */
+.description-column::-webkit-scrollbar {
+    width: 6px;
+}
+
+.description-column::-webkit-scrollbar-track {
+    background: rgba(8, 149, 76, 0.05);
+    border-radius: 3px;
+}
+
+.description-column::-webkit-scrollbar-thumb {
+    background: rgba(8, 149, 76, 0.3);
+    border-radius: 3px;
+}
+
+.description-column::-webkit-scrollbar-thumb:hover {
+    background: rgba(8, 149, 76, 0.5);
+}
+
 .description-card {
     background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
     border-radius: 12px;
-    padding: 40px;
-    margin-bottom: 50px;
+    padding: 25px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
     border: 1px solid rgba(8, 149, 76, 0.1);
-    animation: fadeInUp 0.6s ease-out 0.2s both;
+    height: 100%;
+}
+
+.description-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
 }
 
 .description-icon {
     color: #08954C;
-    margin-bottom: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     background: rgba(8, 149, 76, 0.1);
     border-radius: 50%;
-    margin: 0 auto 25px;
+    flex-shrink: 0;
 }
 
 .description-card h2 {
-    font-size: 28px;
+    font-size: 24px;
     font-weight: 600;
     color: #2c3e50;
-    margin-bottom: 20px;
-    text-align: center;
+    margin: 0;
 }
 
 .description-text {
-    font-size: 16px;
-    line-height: 1.8;
+    font-size: 14px;
+    line-height: 1.7;
     color: #555;
-    margin-bottom: 15px;
-    text-align: justify;
+    margin-bottom: 12px;
 }
 
 .description-text:last-of-type {
@@ -107,33 +158,33 @@
 .dfm-definition,
 .dfm-focus,
 .dfm-usage {
-    margin-top: 30px;
-    padding: 25px;
+    margin-top: 20px;
+    padding: 18px;
     background: rgba(8, 149, 76, 0.03);
     border-left: 4px solid #08954C;
     border-radius: 8px;
 }
 
 .description-card h3 {
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 600;
     color: #08954C;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
     text-align: left;
 }
 
 .dfm-list {
     list-style: none;
     padding-left: 0;
-    margin: 15px 0 0 0;
+    margin: 10px 0 0 0;
 }
 
 .dfm-list li {
-    font-size: 15px;
-    line-height: 1.8;
+    font-size: 13px;
+    line-height: 1.7;
     color: #555;
-    margin-bottom: 12px;
-    padding-left: 30px;
+    margin-bottom: 10px;
+    padding-left: 25px;
     position: relative;
 }
 
@@ -143,7 +194,7 @@
     left: 0;
     color: #08954C;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .dfm-list li:last-child {
@@ -161,31 +212,55 @@
     }
 }
 
-/* Options Section */
-.options-section {
-    animation: fadeInUp 0.6s ease-out 0.4s both;
+/* Right Column: Options */
+.options-column {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
 .section-title {
-    font-size: 32px;
+    font-size: 24px;
     font-weight: 600;
     color: #2c3e50;
-    margin-bottom: 40px;
+    margin-bottom: 25px;
     text-align: center;
+    flex-shrink: 0;
 }
 
-.options-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 40px;
-    padding: 20px 0;
+.options-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+/* Custom scrollbar for options column */
+.options-stack::-webkit-scrollbar {
+    width: 6px;
+}
+
+.options-stack::-webkit-scrollbar-track {
+    background: rgba(8, 149, 76, 0.05);
+    border-radius: 3px;
+}
+
+.options-stack::-webkit-scrollbar-thumb {
+    background: rgba(8, 149, 76, 0.3);
+    border-radius: 3px;
+}
+
+.options-stack::-webkit-scrollbar-thumb:hover {
+    background: rgba(8, 149, 76, 0.5);
 }
 
 /* Option Card */
 .option-card {
     background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-    border-radius: 16px;
-    padding: 40px 30px;
+    border-radius: 12px;
+    padding: 30px 25px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -196,6 +271,7 @@
     cursor: pointer;
     position: relative;
     overflow: hidden;
+    flex-shrink: 0;
 }
 
 .option-card::before {
@@ -215,14 +291,14 @@
 }
 
 .option-card:hover {
-    transform: translateY(-10px) scale(1.03);
+    transform: translateY(-8px) scale(1.02);
     box-shadow: 0 12px 32px rgba(8, 149, 76, 0.25);
     border-color: rgba(8, 149, 76, 0.3);
 }
 
 .option-icon {
     color: #08954C;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -236,10 +312,10 @@
 }
 
 .option-title {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 600;
     color: #2c3e50;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
     position: relative;
     z-index: 1;
     transition: color 0.3s ease;
@@ -250,10 +326,10 @@
 }
 
 .option-description {
-    font-size: 15px;
+    font-size: 14px;
     line-height: 1.6;
     color: #666;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
     flex-grow: 1;
     position: relative;
     z-index: 1;
@@ -264,8 +340,8 @@
     color: #ffffff;
     border: none;
     border-radius: 8px;
-    padding: 14px 32px;
-    font-size: 16px;
+    padding: 12px 28px;
+    font-size: 15px;
     font-weight: 600;
     cursor: pointer;
     display: flex;
@@ -296,36 +372,35 @@
 }
 
 /* Responsive Design for DFM Page */
-@media (max-width: 1024px) {
-    .options-grid {
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 30px;
+@media (max-width: 1200px) {
+    .dfm-layout {
+        grid-template-columns: 1fr;
+        gap: 20px;
     }
     
-    .page-title {
-        font-size: 36px;
-    }
-    
-    .description-card {
-        padding: 30px;
+    .description-column,
+    .options-column {
+        overflow-y: auto;
+        max-height: 50vh;
     }
 }
 
 @media (max-width: 768px) {
-    .options-grid {
-        grid-template-columns: 1fr;
-        gap: 25px;
-    }
-    
     .page-title {
-        font-size: 32px;
+        font-size: 28px;
+        margin-bottom: 15px;
     }
     
     .description-card {
-        padding: 25px;
+        padding: 20px;
     }
     
     .option-card {
-        padding: 30px 20px;
+        padding: 25px 20px;
+    }
+    
+    .section-title {
+        font-size: 20px;
+        margin-bottom: 20px;
     }
 }

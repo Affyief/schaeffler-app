@@ -106,92 +106,98 @@
                     <!-- Page Title -->
                     <h1 class="page-title">Design for Manufacturing</h1>
 
-                    <!-- Description Section -->
-                    <div class="description-card">
-                        <div class="description-icon">
-                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <circle cx="12" cy="12" r="3"></circle>
-                                <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
-                                <path d="M8 12h8"></path>
-                                <path d="M12 8v8"></path>
-                            </svg>
-                        </div>
-                        <h2>About Design for Manufacturing (DFM)</h2>
-                        <p class="description-text">
-                            <strong>DFM</strong> is an approach that focuses on designing products so they can be manufactured more easily, cost-effectively, and efficiently. 
-                            It includes guidelines and principles that aim to simplify the manufacturing process, reduce material costs, and improve product quality. 
-                            DFM is often viewed as a standalone practice because it addresses specific challenges and objectives in manufacturing.
-                        </p>
-                        <div class="dfm-definition">
-                            <h3>As per IATF 16949 Definition:</h3>
-                            <p class="description-text">
-                                <strong>DFM - Design for Manufacturing</strong> is the integration of product development and process planning to design the product 
-                                in such a way that it can be manufactured as simply and efficiently as possible.
-                            </p>
-                        </div>
-                        <div class="dfm-focus">
-                            <h3>Focus Areas:</h3>
-                            <ul class="dfm-list">
-                                <li>Manufacturability analysis of processes, process steps, sub-assemblies</li>
-                                <li>Clever, robust and beneficial design</li>
-                                <li>Structured & adaptable Questionnaire</li>
-                                <li>Define adaptations, modifications or further developments</li>
-                            </ul>
-                        </div>
-                        <div class="dfm-usage">
-                            <h3>How is DFM Used?</h3>
-                            <ul class="dfm-list">
-                                <li>Analysis of the function and its individual components</li>
-                                <li>Consideration of suitable manufacturing processes to produce the components in the best possible way</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- Options Section -->
-                    <div class="options-section">
-                        <h2 class="section-title">What would you like to do?</h2>
-                        <div class="options-grid">
-                            <div class="option-card" id="newProcessCard">
-                                <div class="option-icon">
-                                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                        <circle cx="12" cy="12" r="10"></circle>
-                                        <line x1="12" y1="8" x2="12" y2="16"></line>
-                                        <line x1="8" y1="12" x2="16" y2="12"></line>
-                                    </svg>
+                    <!-- Two Column Layout -->
+                    <div class="dfm-layout">
+                        <!-- Left Column: Description -->
+                        <div class="description-column">
+                            <div class="description-card">
+                                <div class="description-header">
+                                    <div class="description-icon">
+                                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                            <circle cx="12" cy="12" r="3"></circle>
+                                            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
+                                            <path d="M8 12h8"></path>
+                                            <path d="M12 8v8"></path>
+                                        </svg>
+                                    </div>
+                                    <h2>About DFM</h2>
                                 </div>
-                                <h3 class="option-title">Start New DFM Process</h3>
-                                <p class="option-description">
-                                    Begin a new Design for Manufacturing process from scratch. 
-                                    Create, analyze, and optimize your manufacturing design.
+                                <p class="description-text">
+                                    <strong>DFM</strong> is an approach that focuses on designing products so they can be manufactured more easily, cost-effectively, and efficiently. 
+                                    It includes guidelines and principles that aim to simplify the manufacturing process, reduce material costs, and improve product quality.
                                 </p>
-                                <button class="option-button">
-                                    <span>Start New</span>
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                                        <polyline points="12 5 19 12 12 19"></polyline>
-                                    </svg>
-                                </button>
+                                <div class="dfm-definition">
+                                    <h3>IATF 16949 Definition:</h3>
+                                    <p class="description-text">
+                                        <strong>DFM</strong> is the integration of product development and process planning to design the product 
+                                        in such a way that it can be manufactured as simply and efficiently as possible.
+                                    </p>
+                                </div>
+                                <div class="dfm-focus">
+                                    <h3>Focus Areas:</h3>
+                                    <ul class="dfm-list">
+                                        <li>Manufacturability analysis of processes, process steps, sub-assemblies</li>
+                                        <li>Clever, robust and beneficial design</li>
+                                        <li>Structured & adaptable Questionnaire</li>
+                                        <li>Define adaptations, modifications or further developments</li>
+                                    </ul>
+                                </div>
+                                <div class="dfm-usage">
+                                    <h3>How is DFM Used?</h3>
+                                    <ul class="dfm-list">
+                                        <li>Analysis of the function and its individual components</li>
+                                        <li>Consideration of suitable manufacturing processes to produce the components in the best possible way</li>
+                                    </ul>
+                                </div>
                             </div>
+                        </div>
 
-                            <div class="option-card" id="modifyProcessCard">
-                                <div class="option-icon">
-                                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                                    </svg>
+                        <!-- Right Column: Options -->
+                        <div class="options-column">
+                            <h2 class="section-title">What would you like to do?</h2>
+                            <div class="options-stack">
+                                <div class="option-card" id="newProcessCard">
+                                    <div class="option-icon">
+                                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <line x1="12" y1="8" x2="12" y2="16"></line>
+                                            <line x1="8" y1="12" x2="16" y2="12"></line>
+                                        </svg>
+                                    </div>
+                                    <h3 class="option-title">Start New DFM Process</h3>
+                                    <p class="option-description">
+                                        Begin a new Design for Manufacturing process from scratch. 
+                                        Create, analyze, and optimize your manufacturing design.
+                                    </p>
+                                    <button class="option-button">
+                                        <span>Start New</span>
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                                            <polyline points="12 5 19 12 12 19"></polyline>
+                                        </svg>
+                                    </button>
                                 </div>
-                                <h3 class="option-title">Modify Existing DFM Process</h3>
-                                <p class="option-description">
-                                    Continue working on an existing process. 
-                                    Review, update, and refine your previous manufacturing designs.
-                                </p>
-                                <button class="option-button">
-                                    <span>Modify Existing</span>
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                                        <polyline points="12 5 19 12 12 19"></polyline>
-                                    </svg>
-                                </button>
+
+                                <div class="option-card" id="modifyProcessCard">
+                                    <div class="option-icon">
+                                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                        </svg>
+                                    </div>
+                                    <h3 class="option-title">Modify Existing DFM Process</h3>
+                                    <p class="option-description">
+                                        Continue working on an existing process. 
+                                        Review, update, and refine your previous manufacturing designs.
+                                    </p>
+                                    <button class="option-button">
+                                        <span>Modify Existing</span>
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                                            <polyline points="12 5 19 12 12 19"></polyline>
+                                        </svg>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
