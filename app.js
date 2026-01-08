@@ -44,12 +44,29 @@ document.addEventListener('DOMContentLoaded', function() {
     const logoPlaceholder = document.querySelector('.logo-placeholder');
     
     if (logoImage) {
+        let errorCount = 0;
+        const maxRetries = 1;
+        
         logoImage.addEventListener('error', function handleLogoError() {
+            errorCount++;
+            
+            // Prevent infinite loops
+            if (errorCount > maxRetries) {
+                // Show placeholder after max retries
+                this.style.display = 'none';
+                if (logoPlaceholder) {
+                    logoPlaceholder.style.display = 'block';
+                }
+                return;
+            }
+            
             // First error: try external URL
             if (this.src.includes('assets/')) {
+                console.log('Local logo not found, attempting to load from external URL');
                 this.src = 'https://acam.rwth-campus.com/wp-content/uploads/sites/11/2024/05/Schaeffler-Logo.jpg';
             } else {
                 // Second error: show placeholder
+                console.log('External logo failed to load, showing placeholder');
                 this.style.display = 'none';
                 if (logoPlaceholder) {
                     logoPlaceholder.style.display = 'block';
