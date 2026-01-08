@@ -12,9 +12,10 @@ body {
 /* Main Content Styles */
 .main-content {
     margin-left: 250px;
+    margin-top: 70px;
     padding: 20px 40px;
     transition: margin-left 0.3s ease;
-    min-height: calc(100vh - 60px);
+    min-height: calc(100vh - 70px);
 }
 
 .main-content.sidebar-collapsed {
