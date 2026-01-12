@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DFM Process Configuration - Schaeffler DPFC</title>
-    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="dfm-config-styles.css">
 </head>
 <body>
@@ -77,16 +76,17 @@
     </div>
 
     <!-- Main Content -->
-    <main class="main-content">
+    <div class="main-content" id="mainContent">
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+            <a href="index.html">Home</a>
+            <span>›</span>
+            <a href="dfm.html">Design for Manufacturing</a>
+            <span>›</span>
+            <span class="current">New Process Configuration</span>
+        </div>
+        
         <div class="content-wrapper">
-            <!-- Breadcrumb -->
-            <nav class="breadcrumb">
-                <a href="index.html" class="breadcrumb-link">Home</a>
-                <span class="breadcrumb-separator">›</span>
-                <a href="dfm.html" class="breadcrumb-link">Design for Manufacturing</a>
-                <span class="breadcrumb-separator">›</span>
-                <span class="breadcrumb-current">New Process Configuration</span>
-            </nav>
 
             <!-- Configuration Form -->
             <div class="config-container">
@@ -249,7 +249,7 @@
                 </div>
             </div>
         </div>
-    </main>
+    </div>
 
     <script src="app.js"></script>
     <script src="dfm-config.js"></script>
