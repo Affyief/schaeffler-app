@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Area Selection - Schaeffler DPFC</title>
+    <link rel="stylesheet" href="area-selection-styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1 class="header-title">Schaeffler DPFC</h1>
+                <div class="header-actions">
+                    <button class="icon-button" title="User Profile">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <nav class="sidebar-nav">
+                <a href="index.html" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg>
+                    <span>Home</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                    </svg>
+                    <span>Catalog</span>
+                </a>
+                <a href="#" class="nav-item active">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="12" y1="1" x2="12" y2="23"></line>
+                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                    </svg>
+                    <span>My Processes</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-content" id="mainContent">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span>›</span>
+                <a href="dfm.html">Design for Manufacturing</a>
+                <span>›</span>
+                <a href="dfm-config.html">Configuration</a>
+                <span>›</span>
+                <a href="project-details.html">Project Details</a>
+                <span>›</span>
+                <a href="participant-details.html">Participant Details</a>
+                <span>›</span>
+                <a href="subassembly-details.html">Sub-Assembly Details</a>
+                <span>›</span>
+                <a href="product-images.html">Product Images</a>
+                <span>›</span>
+                <span class="current">Area Selection</span>
+            </div>
+
+            <div class="page-header">
+                <div class="page-header-content">
+                    <h1 class="page-title">
+                        <svg class="title-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 11l3 3L22 4"></path>
+                            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                        </svg>
+                        Area Selection
+                    </h1>
+                    <p class="page-subtitle">Select the assessment area and questionnaire type for your DFM process</p>
+                </div>
+            </div>
+
+            <div class="form-container">
+                <div class="selection-card">
+                    <div class="card-header">
+                        <div class="step-badge">1</div>
+                        <h2>Select Area</h2>
+                    </div>
+                    <div class="dropdown-wrapper">
+                        <label for="areaSelect" class="dropdown-label">
+                            Assessment Area <span class="required">*</span>
+                        </label>
+                        <div class="custom-select">
+                            <select id="areaSelect" required>
+                                <option value="">Choose an area...</option>
+                                <option value="bare_die">Bare Die</option>
+                                <option value="pcb">PCB</option>
+                                <option value="assembly">Assembly</option>
+                                <option value="material">Material</option>
+                                <option value="test">Test</option>
+                                <option value="results">Results</option>
+                                <option value="general">General</option>
+                                <option value="others">Others</option>
+                            </select>
+                            <div class="select-arrow">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </div>
+                        </div>
+                        <p class="helper-text">Select the primary assessment area for your DFM process</p>
+                    </div>
+                </div>
+
+                <div class="selection-card">
+                    <div class="card-header">
+                        <div class="step-badge">2</div>
+                        <h2>Select Questionnaire Type</h2>
+                    </div>
+                    <div class="dropdown-wrapper">
+                        <label for="questionnaireType" class="dropdown-label">
+                            Questionnaire Type <span class="required">*</span>
+                        </label>
+                        <div class="custom-select">
+                            <select id="questionnaireType" required disabled>
+                                <option value="">Choose questionnaire type...</option>
+                                <option value="full">Full Questionnaire</option>
+                                <option value="sub_area">Sub-Area Questionnaire</option>
+                            </select>
+                            <div class="select-arrow">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </div>
+                        </div>
+                        <p class="helper-text">Choose between a comprehensive assessment or focused sub-area evaluation</p>
+                    </div>
+                </div>
+
+                <div class="selection-card disabled" id="subAreaCard">
+                    <div class="card-header">
+                        <div class="step-badge">3</div>
+                        <h2>Select Sub-Area</h2>
+                        <span class="optional-badge">Optional</span>
+                    </div>
+                    <div class="dropdown-wrapper">
+                        <label for="subAreaSelect" class="dropdown-label">
+                            Sub-Area <span class="conditional-required">(Required if Sub-Area selected)</span>
+                        </label>
+                        <div class="custom-select">
+                            <select id="subAreaSelect" disabled>
+                                <option value="">Choose a sub-area...</option>
+                                <option value="automation_capability">Automation Capability</option>
+                                <option value="complexity_of_assembly">Complexity of Assembly</option>
+                                <option value="component_preparation">Component Preparation</option>
+                                <option value="interconnection_elements">Interconnection Elements</option>
+                                <option value="manufacturing_technologies">Manufacturing Technologies</option>
+                                <option value="packaging_concept">Packaging Concept</option>
+                                <option value="positioning_process">Positioning Process</option>
+                                <option value="positioning_supporting_design">Positioning Supporting Design Elements</option>
+                                <option value="process_capability">Process Capability and Performance</option>
+                                <option value="process_controls">Process Controls</option>
+                                <option value="rework_analysis">Rework and Analysis Concept</option>
+                                <option value="supply_of_paint">Supply of Paint</option>
+                                <option value="tolerances_assembly">Tolerances for Assembly</option>
+                                <option value="weight_of_paint">Weight of Paint</option>
+                            </select>
+                            <div class="select-arrow">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </div>
+                        </div>
+                        <p class="helper-text">Select a specific sub-area for detailed assessment (only if Sub-Area Questionnaire is selected)</p>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-back" onclick="window.location.href='product-images.html'">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 12H5M12 19l-7-7 7-7"/>
+                        </svg>
+                        Back
+                    </button>
+                    <button type="button" class="btn-submit" id="submitBtn" disabled>
+                        Continue
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Success Notification -->
+            <div class="notification" id="notification">
+                <div class="notification-content">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                    <span>Selection saved successfully!</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="area-selection.js"></script>
+</body>
+</html>

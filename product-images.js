@@ -309,9 +309,7 @@ document.getElementById('submitBtn').addEventListener('click', function() {
     
     // Navigate to next page after delay
     setTimeout(() => {
-        // TODO: Replace with actual next page URL
-        alert('Product images saved! Ready to proceed to the next step in the workflow.');
-        // window.location.href = 'next-page.html';
+        window.location.href = 'area-selection.html';
     }, 1500);
 });
 
