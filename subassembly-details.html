@@ -69,16 +69,23 @@
     </div>
 
     <!-- Main Content -->
-    <main class="main-content">
+    <div class="main-content" id="mainContent">
+        <!-- Breadcrumb -->
         <div class="breadcrumb">
-            <a href="index.html">Home</a> › 
-            <a href="dfm.html">Design for Manufacturing</a> › 
-            <a href="dfm-config.html">Configuration</a> › 
-            <a href="project-details.html">Project Details</a> › 
-            <a href="participant-details.html">Participant Details</a> › 
-            <span>Sub-Assembly Details</span>
+            <a href="index.html">Home</a>
+            <span>›</span>
+            <a href="dfm.html">Design for Manufacturing</a>
+            <span>›</span>
+            <a href="dfm-config.html">Configuration</a>
+            <span>›</span>
+            <a href="project-details.html">Project Details</a>
+            <span>›</span>
+            <a href="participant-details.html">Participant Details</a>
+            <span>›</span>
+            <span class="current">Sub-Assembly Details</span>
         </div>
 
+        <!-- Container -->
         <div class="container">
             <h2 class="page-title">Sub-Assembly Details</h2>
             <p class="page-description">Add details for each sub-assembly in your DFM project. At least one sub-assembly must be added to proceed.</p>
@@ -139,7 +146,7 @@
                 </button>
             </div>
         </div>
-    </main>
+    </div>
 
     <script src="subassembly-details.js"></script>
     <script src="app.js"></script>
