@@ -216,11 +216,9 @@ function handleSubmit() {
     submitBtn.textContent = 'Saved! Redirecting...';
     submitBtn.disabled = true;
     
-    // Navigate to next page (placeholder for now)
+    // Navigate to product images page
     setTimeout(() => {
-        // TODO: Navigate to next workflow step
-        alert('Sub-assembly details saved successfully! Ready for next workflow step.');
-        // window.location.href = 'next-page.html';
+        window.location.href = 'product-images.html';
     }, 1500);
 }
 
