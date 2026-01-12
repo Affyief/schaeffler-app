@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Full Questionnaire - Schaeffler DPFC</title>
+    <link rel="stylesheet" href="questionnaire-full-styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <h1>Schaeffler DPFC</h1>
+            </div>
+            <div class="user-section">
+                <span class="user-icon">👤</span>
+                <span class="login-text">Schaeffler</span>
+            </div>
+        </header>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <nav>
+                <a href="index.html" class="nav-item">
+                    <span class="icon">🏠</span>
+                    <span class="label">Home</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="icon">📋</span>
+                    <span class="label">Catalog</span>
+                </a>
+                <a href="#" class="nav-item active">
+                    <span class="icon">💰</span>
+                    <span class="label">My Processes</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="icon">💬</span>
+                    <span class="label">Feedback</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="icon">❓</span>
+                    <span class="label">Support</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-content" id="mainContent">
+            <!-- Breadcrumb -->
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span>›</span>
+                <a href="dfm.html">Design for Manufacturing</a>
+                <span>›</span>
+                <a href="dfm-config.html">Configuration</a>
+                <span>›</span>
+                <a href="project-details.html">Project Details</a>
+                <span>›</span>
+                <a href="participant-details.html">Participant Details</a>
+                <span>›</span>
+                <a href="subassembly-details.html">Sub-Assembly Details</a>
+                <span>›</span>
+                <a href="product-images.html">Product Images</a>
+                <span>›</span>
+                <a href="area-selection.html">Area Selection</a>
+                <span>›</span>
+                <span class="current">Full Questionnaire</span>
+            </div>
+
+            <!-- Page Title -->
+            <div class="page-header">
+                <h2>DFM Assessment - Full Questionnaire</h2>
+                <p class="page-description">Complete the comprehensive Design for Manufacturing assessment questionnaire. Review each question and provide your evaluation.</p>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="progress-text">
+                    <span id="progressText">0 of 13 questions completed</span>
+                    <span id="progressPercent">0%</span>
+                </div>
+            </div>
+
+            <!-- Questionnaire Form -->
+            <form id="questionnaireForm">
+                
+                <!-- Section: Technical Standards - Design Guidelines -->
+                <div class="section-card">
+                    <div class="section-header">
+                        <div class="section-badge">GE 1.0</div>
+                        <h3>Technical Standards - Design Guidelines</h3>
+                    </div>
+
+                    <!-- Question GE 1.1 -->
+                    <div class="question-card">
+                        <div class="question-header">
+                            <span class="question-number">GE 1.1</span>
+                            <p class="question-text">Are all required informations available? (Norms, external standards, internal standards, guidelines, …)</p>
+                        </div>
+                        <div class="question-inputs">
+                            <div class="input-group">
+                                <label>Comments</label>
+                                <textarea class="comment-input" name="ge11_comment" placeholder="Enter your comments here..."></textarea>
+                            </div>
+                            <div class="input-row">
+                                <div class="input-group">
+                                    <label>Responsibility</label>
+                                    <input type="text" class="responsibility-input" name="ge11_responsibility" placeholder="Enter responsible person">
+                                </div>
+                                <div class="input-group">
+                                    <label>Date</label>
+                                    <input type="date" class="date-input" name="ge11_date">
+                                </div>
+                            </div>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="radio" name="ge11_status" value="ok" required>
+                                    <span class="checkbox-custom ok">OK</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="radio" name="ge11_status" value="nok">
+                                    <span class="checkbox-custom nok">NOK</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="radio" name="ge11_status" value="not_relevant">
+                                    <span class="checkbox-custom not-relevant">Not Relevant</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Question GE 1.2 -->
+                    <div class="question-card">
+                        <div class="question-header">
+                            <span class="question-number">GE 1.2</span>
+                            <p class="question-text">Are technical standards, design standards or design guidelines respected in CAD, drawings and specifications?</p>
+                        </div>
+                        <div class="question-inputs">
+                            <div class="input-group">
+                                <label>Comments</label>
+                                <textarea class="comment-input" name="ge12_comment" placeholder="Enter your comments here..."></textarea>
+                            </div>
+                            <div class="input-row">
+                                <div class="input-group">
+                                    <label>Responsibility</label>
+                                    <input type="text" class="responsibility-input" name="ge12_responsibility" placeholder="Enter responsible person">
+                                </div>
+                                <div class="input-group">
+                                    <label>Date</label>
+                                    <input type="date" class="date-input" name="ge12_date">
+                                </div>
+                            </div>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="radio" name="ge12_status" value="ok" required>
+                                    <span class="checkbox-custom ok">OK</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="radio" name="ge12_status" value="nok">
+                                    <span class="checkbox-custom nok">NOK</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="radio" name="ge12_status" value="not_relevant">
+                                    <span class="checkbox-custom not-relevant">Not Relevant</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Question GE 1.3 -->
+                    <div class="question-card">
+                        <div class="question-header">
+                            <span class="question-number">GE 1.3</span>
+                            <p class="question-text">Deviations from design guidelines and norms? If yes, is the risk acceptable?</p>
+                        </div>
+                        <div class="question-inputs">
+                            <div class="input-group">
+                                <label>Comments</label>
+                                <textarea class="comment-input" name="ge13_comment" placeholder="Enter your comments here..."></textarea>
+                            </div>
+                            <div class="input-row">
+                                <div class="input-group">
+                                    <label>Responsibility</label>
+                                    <input type="text" class="responsibility-input" name="ge13_responsibility" placeholder="Enter responsible person">
+                                </div>
+                                <div class="input-group">
+                                    <label>Date</label>
+                                    <input type="date" class="date-input" name="ge13_date">
+                                </div>
+                            </div>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="radio" name="ge13_status" value="ok" required>
+                                    <span class="checkbox-custom ok">OK</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="radio" name="ge13_status" value="nok">
+                                    <span class="checkbox-custom nok">NOK</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="radio" name="ge13_status" value="not_relevant">
+                                    <span class="checkbox-custom not-relevant">Not Relevant</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Question GE 1.4 -->
+                    <div class="question-card">
+                        <div class="question-header">
+                            <span class="question-number">GE 1.4</span>
+                            <p class="question-text">Similar existing designs and suitable solutions are taken into account?</p>
+                        </div>
+                        <div class="question-inputs">
+                            <div class="input-group">
+                                <label>Comments</label>
+                                <textarea class="comment-input" name="ge14_comment" placeholder="Enter your comments here..."></textarea>
+                            </div>
+                            <div class="input-row">
+                                <div class="input-group">
+                                    <label>Responsibility</label>
+                                    <input type="text" class="responsibility-input" name="ge14_responsibility" placeholder="Enter responsible person">
+                                </div>
+                                <div class="input-group">
+                                    <label>Date</label>
+                                    <input type="date" class="date-input" name="ge14_date">
+                                </div>
+                            </div>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="radio" name="ge14_status" value="ok" required>
+                                    <span class="checkbox-custom ok">OK</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="radio" name="ge14_status" value="nok">
+                                    <span class="checkbox-custom nok">NOK</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="radio" name="ge14_status" value="not_relevant">
+                                    <span class="checkbox-custom not-relevant">Not Relevant</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section: Variant Management -->
+                <div class="section-card">
+                    <div class="section-header">
+                        <div class="section-badge">GE 2.0</div>
+                        <h3>Variant Management</h3>
+                    </div>
+
+                    <!-- Question GE 2.1 -->
+                    <div class="question-card">
+                        <div class="question-header">
+                            <span class="question-number">GE 2.1</span>
+                            <p class="question-text">Design variants avoided? (e.g. product, fixtures)</p>
+                        </div>
+                        <div class="question-inputs">
+                            <div class="input-group">
+                                <label>Comments</label>
+                                <textarea class="comment-input" name="ge21_comment" placeholder="Enter your comments here..."></textarea>
+                            </div>
+                            <div class="input-row">
+                                <div class="input-group">
+                                    <label>Responsibility</label>
+                                    <input type="text" class="responsibility-input" name="ge21_responsibility" placeholder="Enter responsible person">
+                                </div>
+                                <div class="input-group">
+                                    <label>Date</label>
+                                    <input type="date" class="date-input" name="ge21_date">
+                                </div>
+                            </div>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="radio" name="ge21_status" value="ok" required>
+                                    <span class="checkbox-custom ok">OK</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="radio" name="ge21_status" value="nok">
+                                    <span class="checkbox-custom nok">NOK</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="radio" name="ge21_status" value="not_relevant">
+                                    <span class="checkbox-custom not-relevant">Not Relevant</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Question GE 2.2 -->
+                    <div class="question-card">
+                        <div class="question-header">
+                            <span class="question-number">GE 2.2</span>
+                            <p class="question-text">Items which cause variants are identified? (e.g. customer interfaces)</p>
+                        </div>
+                        <div class="question-inputs">
+                            <div class="input-group">
+                                <label>Comments</label>
+                                <textarea class="comment-input" name="ge22_comment" placeholder="Enter your comments here..."></textarea>
+                            </div>
+                            <div class="input-row">
+                                <div class="input-group">
+                                    <label>Responsibility</label>
+                                    <input type="text" class="responsibility-input" name="ge22_responsibility" placeholder="Enter responsible person">
+                                </div>
+                                <div class="input-group">
+                                    <label>Date</label>
+                                    <input type="date" class="date-input" name="ge22_date">
+                                </div>
+                            </div>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="radio" name="ge22_status" value="ok" required>
+                                    <span class="checkbox-custom ok">OK</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="radio" name="ge22_status" value="nok">
+                                    <span class="checkbox-custom nok">NOK</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="radio" name="ge22_status" value="not_relevant">
+                                    <span class="checkbox-custom not-relevant">Not Relevant</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Question GE 2.3 -->
+                    <div class="question-card">
+                        <div class="question-header">
+                            <span class="question-number">GE 2.3</span>
+                            <p class="question-text">Design variants distinguished late in process flow?</p>
+                        </div>
+                        <div class="question-inputs">
+                            <div class="input-group">
+                                <label>Comments</label>
+                                <textarea class="comment-input" name="ge23_comment" placeholder="Enter your comments here..."></textarea>
+                            </div>
+                            <div class="input-row">
+                                <div class="input-group">
+                                    <label>Responsibility</label>
+                                    <input type="text" class="responsibility-input" name="ge23_responsibility" placeholder="Enter responsible person">
+                                </div>
+                                <div class="input-group">
+                                    <label>Date</label>
+                                    <input type="date" class="date-input" name="ge23_date">
+                                </div>
+                            </div>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="radio" name="ge23_status" value="ok" required>
+                                    <span class="checkbox-custom ok">OK</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="radio" name="ge23_status" value="nok">
+                                    <span class="checkbox-custom nok">NOK</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="radio" name="ge23_status" value="not_relevant">
+                                    <span class="checkbox-custom not-relevant">Not Relevant</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Question GE 2.4 -->
+                    <div class="question-card">
+                        <div class="question-header">
+                            <span class="question-number">GE 2.4</span>
+                            <p class="question-text">Potential design variants are considered? (e.g. Envelope design, Mechanic platform design)</p>
+                        </div>
+                        <div class="question-inputs">
+                            <div class="input-group">
+                                <label>Comments</label>
+                                <textarea class="comment-input" name="ge24_comment" placeholder="Enter your comments here..."></textarea>
+                            </div>
+                            <div class="input-row">
+                                <div class="input-group">
+                                    <label>Responsibility</label>
+                                    <input type="text" class="responsibility-input" name="ge24_responsibility" placeholder="Enter responsible person">
+                                </div>
+                                <div class="input-group">
+                                    <label>Date</label>
+                                    <input type="date" class="date-input" name="ge24_date">
+                                </div>
+                            </div>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="radio" name="ge24_status" value="ok" required>
+                                    <span class="checkbox-custom ok">OK</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="radio" name="ge24_status" value="nok">
+                                    <span class="checkbox-custom nok">NOK</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="radio" name="ge24_status" value="not_relevant">
+                                    <span class="checkbox-custom not-relevant">Not Relevant</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section: Specifications - Drawings - Simulation -->
+                <div class="section-card">
+                    <div class="section-header">
+                        <div class="section-badge">GE 3.0</div>
+                        <h3>Specifications - Drawings - Simulation</h3>
+                    </div>
+
+                    <!-- Question GE 3.1 -->
+                    <div class="question-card">
+                        <div class="question-header">
+                            <span class="question-number">GE 3.1</span>
+                            <p class="question-text">All specifications and drawings are in a proper maturity?</p>
+                        </div>
+                        <div class="question-inputs">
+                            <div class="input-group">
+                                <label>Comments</label>
+                                <textarea class="comment-input" name="ge31_comment" placeholder="Enter your comments here..."></textarea>
+                            </div>
+                            <div class="input-row">
+                                <div class="input-group">
+                                    <label>Responsibility</label>
+                                    <input type="text" class="responsibility-input" name="ge31_responsibility" placeholder="Enter responsible person">
+                                </div>
+                                <div class="input-group">
+                                    <label>Date</label>
+                                    <input type="date" class="date-input" name="ge31_date">
+                                </div>
+                            </div>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="radio" name="ge31_status" value="ok" required>
+                                    <span class="checkbox-custom ok">OK</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="radio" name="ge31_status" value="nok">
+                                    <span class="checkbox-custom nok">NOK</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="radio" name="ge31_status" value="not_relevant">
+                                    <span class="checkbox-custom not-relevant">Not Relevant</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Question GE 3.2 -->
+                    <div class="question-card">
+                        <div class="question-header">
+                            <span class="question-number">GE 3.2</span>
+                            <p class="question-text">Design simulations necessary, planned or done? (Warpage, FEM, Vibration, ESD, EMC, Mold flow)</p>
+                        </div>
+                        <div class="question-inputs">
+                            <div class="input-group">
+                                <label>Comments</label>
+                                <textarea class="comment-input" name="ge32_comment" placeholder="Enter your comments here..."></textarea>
+                            </div>
+                            <div class="input-row">
+                                <div class="input-group">
+                                    <label>Responsibility</label>
+                                    <input type="text" class="responsibility-input" name="ge32_responsibility" placeholder="Enter responsible person">
+                                </div>
+                                <div class="input-group">
+                                    <label>Date</label>
+                                    <input type="date" class="date-input" name="ge32_date">
+                                </div>
+                            </div>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="radio" name="ge32_status" value="ok" required>
+                                    <span class="checkbox-custom ok">OK</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="radio" name="ge32_status" value="nok">
+                                    <span class="checkbox-custom nok">NOK</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="radio" name="ge32_status" value="not_relevant">
+                                    <span class="checkbox-custom not-relevant">Not Relevant</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Question GE 3.3 -->
+                    <div class="question-card">
+                        <div class="question-header">
+                            <span class="question-number">GE 3.3</span>
+                            <p class="question-text">All identification possibilities on relevant parts are available? (e.g. DMC, traceability) (A-components and all mechanic parts - VT 0500317 - Qualification of components in applications)</p>
+                        </div>
+                        <div class="question-inputs">
+                            <div class="input-group">
+                                <label>Comments</label>
+                                <textarea class="comment-input" name="ge33_comment" placeholder="Enter your comments here..."></textarea>
+                            </div>
+                            <div class="input-row">
+                                <div class="input-group">
+                                    <label>Responsibility</label>
+                                    <input type="text" class="responsibility-input" name="ge33_responsibility" placeholder="Enter responsible person">
+                                </div>
+                                <div class="input-group">
+                                    <label>Date</label>
+                                    <input type="date" class="date-input" name="ge33_date">
+                                </div>
+                            </div>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="radio" name="ge33_status" value="ok" required>
+                                    <span class="checkbox-custom ok">OK</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="radio" name="ge33_status" value="nok">
+                                    <span class="checkbox-custom nok">NOK</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="radio" name="ge33_status" value="not_relevant">
+                                    <span class="checkbox-custom not-relevant">Not Relevant</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="form-actions">
+                    <button type="button" class="btn-back" onclick="window.history.back()">
+                        <span>← Back</span>
+                    </button>
+                    <button type="button" class="btn-save-draft" id="saveDraftBtn">
+                        <span>💾 Save Draft</span>
+                    </button>
+                    <button type="submit" class="btn-submit" id="submitBtn">
+                        <span>Submit Assessment →</span>
+                    </button>
+                </div>
+            </form>
+
+            <!-- Success Notification -->
+            <div class="notification" id="notification">
+                <span class="notification-icon">✓</span>
+                <span class="notification-text" id="notificationText">Saved successfully!</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="questionnaire-full.js"></script>
+</body>
+</html>

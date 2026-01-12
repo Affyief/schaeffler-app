@@ -140,6 +140,8 @@ document.addEventListener('DOMContentLoaded', function() {
         submitBtn.textContent = 'Saving...';
         submitBtn.disabled = true;
 
+        const typeValue = questionnaireType.value;
+
         // Simulate save and navigate
         setTimeout(() => {
             // Show success notification
@@ -148,20 +150,15 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => {
                 notification.classList.remove('show');
                 
-                // Navigate to next page (placeholder)
-                // window.location.href = 'next-page.html';
-                
-                // For now, just reset button state
-                submitBtn.classList.remove('saving');
-                submitBtn.innerHTML = `
-                    Continue
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                `;
-                submitBtn.disabled = false;
-            }, 2000);
-        }, 1000);
+                // Navigate to appropriate questionnaire page
+                if (typeValue === 'full') {
+                    window.location.href = 'questionnaire-full.html';
+                } else if (typeValue === 'sub_area') {
+                    // Placeholder for sub-area questionnaire page
+                    window.location.href = 'questionnaire-subarea.html';
+                }
+            }, 800);
+        }, 500);
     }
 
     // Save Data to localStorage
