@@ -9,6 +9,23 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 }
 
+/* Fix header and sidebar positioning */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 70px;
+    height: calc(100vh - 70px);
+    z-index: 999;
+}
+
 /* Main Content Styles */
 .main-content {
     margin-left: 250px;
