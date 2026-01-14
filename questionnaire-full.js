@@ -27,6 +27,7 @@ function setupEventListeners() {
         radio.addEventListener('change', function() {
             updateQuestionCard(this);
             updateProgress();
+            checkAndShowSoftWarning();
             autoSave();
         });
     });
@@ -162,7 +163,7 @@ function handleSubmit(event) {
     const allCompleted = Object.values(statusGroups).every(status => status === true);
     
     if (!allCompleted) {
-        showNotification('Please complete all required status selections (OK/NOK/Not Relevant)', true);
+        showNotification('Please complete all required status selections', true);
         return;
     }
     
@@ -194,6 +195,30 @@ function handleSubmit(event) {
     } catch (error) {
         console.error('Error submitting form:', error);
         showNotification('Error submitting assessment', true);
+    }
+}
+
+// Check and Show Soft Warning
+function checkAndShowSoftWarning() {
+    const allStatusFields = document.querySelectorAll('input[type="radio"][name$="_status"]:checked');
+    let hasNonOkSelection = false;
+    
+    allStatusFields.forEach(radio => {
+        if (radio.value !== 'ok') {
+            hasNonOkSelection = true;
+        }
+    });
+    
+    const overlay = document.getElementById('softWarningOverlay');
+    
+    if (hasNonOkSelection) {
+        // Show the soft warning
+        overlay.classList.add('show');
+        
+        // Auto-hide after 4 seconds
+        setTimeout(() => {
+            overlay.classList.remove('show');
+        }, 4000);
     }
 }
 
