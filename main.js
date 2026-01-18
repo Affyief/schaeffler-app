@@ -11,7 +11,8 @@ function createWindow() {
     }
   });
 
-  mainWindow.loadFile('index.html');
+  // Load login page first
+  mainWindow.loadFile('login.html');
 }
 
 app.whenReady().then(() => {

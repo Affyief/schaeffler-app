@@ -1,5 +1,33 @@
-// Sidebar toggle functionality
+// Authentication check
 document.addEventListener('DOMContentLoaded', function() {
+    // Check if user is authenticated
+    const isAuthenticated = sessionStorage.getItem('isAuthenticated');
+    
+    if (!isAuthenticated || isAuthenticated !== 'true') {
+        // Redirect to login page if not authenticated
+        window.location.href = 'login.html';
+        return;
+    }
+
+    // Check session expiry (24 hours)
+    const loginTime = new Date(sessionStorage.getItem('loginTime'));
+    const now = new Date();
+    const hoursSinceLogin = (now - loginTime) / (1000 * 60 * 60);
+    
+    if (hoursSinceLogin > 24) {
+        // Session expired
+        sessionStorage.clear();
+        window.location.href = 'login.html';
+        return;
+    }
+
+    // Update user display
+    const username = sessionStorage.getItem('username');
+    const loginTextElement = document.querySelector('.login-text');
+    if (loginTextElement && username) {
+        loginTextElement.textContent = username;
+    }
+
     const sidebar = document.getElementById('sidebar');
     const sidebarToggle = document.getElementById('sidebarToggle');
     
@@ -43,7 +71,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const loginIcon = document.querySelector('.login-icon');
     loginIcon.addEventListener('click', function() {
         console.log('Login icon clicked');
-        // Placeholder for future login functionality
+        // Show logout confirmation
+        const confirmLogout = confirm('Are you sure you want to logout?');
+        if (confirmLogout) {
+            sessionStorage.clear();
+            window.location.href = 'login.html';
+        }
     });
     
     // Logo image error handling
