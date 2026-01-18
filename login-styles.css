@@ -20,7 +20,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: url('https://www.schaeffler.com/remotemedien/media/_shared_media_rwd/06_press/press_release/000B954A_article_rwd_1000.jpg') center center / cover no-repeat fixed;
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -77,8 +77,7 @@ body::before {
 /* Left Panel - Branding */
 .left-panel {
     flex: 1;
-    background: linear-gradient(135deg, rgba(8, 149, 76, 0.85) 0%, rgba(10, 173, 92, 0.85) 100%),
-                url('https://www.schaeffler.com/remotemedien/media/_shared_media_rwd/06_press/press_release/000B954A_article_rwd_1000.jpg') center center / cover no-repeat;
+    background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-green-light) 100%);
     padding: 60px;
     display: flex;
     flex-direction: column;
