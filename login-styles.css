@@ -108,43 +108,30 @@ body::before {
 }
 
 .logo-container {
-    margin-bottom: 40px;
+    margin-bottom: 50px;
 }
 
-.schaeffler-logo {
-    max-width: 200px;
-    height: auto;
-    filter: brightness(0) invert(1);
-    animation: fadeIn 0.8s ease-out;
-}
-
-.logo-fallback {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.logo-circle {
-    width: 60px;
-    height: 60px;
-    background: var(--white);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-.logo-text {
-    font-size: 32px;
-    font-weight: bold;
-    color: var(--primary-green);
-}
-
-.company-name {
-    font-size: 36px;
+.company-logo {
+    font-size: 48px;
+    font-weight: 700;
     color: var(--white);
-    font-weight: 600;
+    letter-spacing: -0.5px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    animation: fadeIn 0.8s ease-out;
+    position: relative;
+    display: inline-block;
+}
+
+.company-logo::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: var(--white);
+    border-radius: 2px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .welcome-section {
