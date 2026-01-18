@@ -1,21 +1,6 @@
 // Login Page JavaScript
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Logo image error handling
-    const logoImage = document.querySelector('.schaeffler-logo');
-    const logoFallback = document.querySelector('.logo-fallback');
-    
-    if (logoImage) {
-        logoImage.addEventListener('error', function handleLogoError() {
-            // Show fallback if logo fails to load
-            console.log('Logo failed to load, showing fallback');
-            this.style.display = 'none';
-            if (logoFallback) {
-                logoFallback.style.display = 'flex';
-            }
-        });
-    }
-
     // Get form elements
     const loginForm = document.getElementById('loginForm');
     const loginBtn = document.getElementById('loginBtn');
