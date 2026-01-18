@@ -1,28 +1,17 @@
 // Login Page JavaScript
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Logo image error handling - same as main app
+    // Logo image error handling
     const logoImage = document.querySelector('.schaeffler-logo');
     const logoFallback = document.querySelector('.logo-fallback');
     
     if (logoImage) {
-        let currentAttempt = 0;
-        const fallbackUrl = 'https://acam.rwth-campus.com/wp-content/uploads/sites/11/2024/05/Schaeffler-Logo.jpg';
-        
         logoImage.addEventListener('error', function handleLogoError() {
-            currentAttempt++;
-            
-            if (currentAttempt === 1) {
-                // First error: try external URL
-                console.log('Local logo not found, attempting to load from external URL');
-                this.src = fallbackUrl;
-            } else {
-                // Second error or beyond: show fallback
-                console.log('External logo failed to load, showing fallback');
-                this.style.display = 'none';
-                if (logoFallback) {
-                    logoFallback.style.display = 'flex';
-                }
+            // Show fallback if logo fails to load
+            console.log('Logo failed to load, showing fallback');
+            this.style.display = 'none';
+            if (logoFallback) {
+                logoFallback.style.display = 'flex';
             }
         });
     }

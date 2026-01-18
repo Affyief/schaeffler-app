@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 100" width="400" height="100">
+  <!-- Schaeffler Logo -->
+  <defs>
+    <style>
+      .schaeffler-text { fill: #08954C; font-family: Arial, sans-serif; font-weight: bold; }
+    </style>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="100" fill="white"/>
+  
+  <!-- Schaeffler Text -->
+  <text x="200" y="60" class="schaeffler-text" font-size="48" text-anchor="middle">Schaeffler</text>
+  
+  <!-- Underline accent -->
+  <rect x="50" y="75" width="300" height="3" fill="#08954C"/>
+</svg>
