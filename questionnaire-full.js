@@ -199,6 +199,8 @@ function handleSubmit(event) {
 }
 
 // Check and Show Soft Warning
+let warningTimeout = null;
+
 function checkAndShowSoftWarning() {
     const allStatusFields = document.querySelectorAll('input[type="radio"][name$="_status"]:checked');
     let hasNonOkSelection = false;
@@ -215,8 +217,13 @@ function checkAndShowSoftWarning() {
         // Show the soft warning
         overlay.classList.add('show');
         
+        // Clear any existing timeout
+        if (warningTimeout) {
+            clearTimeout(warningTimeout);
+        }
+        
         // Auto-hide after 4 seconds
-        setTimeout(() => {
+        warningTimeout = setTimeout(() => {
             overlay.classList.remove('show');
         }, 4000);
     }
@@ -248,6 +255,21 @@ document.addEventListener('keydown', function(event) {
     if ((event.ctrlKey || event.metaKey) && event.key === 's') {
         event.preventDefault();
         saveDraft();
+    }
+});
+
+// Soft warning overlay click-to-dismiss
+document.addEventListener('DOMContentLoaded', function() {
+    const overlay = document.getElementById('softWarningOverlay');
+    if (overlay) {
+        overlay.addEventListener('click', function() {
+            // Clear timeout and immediately hide
+            if (warningTimeout) {
+                clearTimeout(warningTimeout);
+                warningTimeout = null;
+            }
+            overlay.classList.remove('show');
+        });
     }
 });
 

@@ -619,11 +619,13 @@ body {
     visibility: hidden;
     transition: all 0.6s ease;
     pointer-events: none;
+    cursor: pointer;
 }
 
 .soft-warning-overlay.show {
     opacity: 1;
     visibility: visible;
+    pointer-events: all;
 }
 
 .soft-warning-content {
