@@ -1,0 +1,406 @@
+/* DFM Page Specific Styles */
+
+/* Ensure no scrolling - fit everything in one window */
+.main-content {
+    overflow: hidden;
+}
+
+.content-wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    font-size: 13px;
+    animation: fadeIn 0.4s ease-in;
+    flex-shrink: 0;
+}
+
+.breadcrumb-link {
+    color: #08954C;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.breadcrumb-link:hover {
+    color: #06703a;
+    text-decoration: underline;
+}
+
+.breadcrumb-separator {
+    color: #999;
+}
+
+.breadcrumb-current {
+    color: #666;
+    font-weight: 500;
+}
+
+/* Page Title */
+.page-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, #08954C 0%, #06703a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: slideInDown 0.6s ease-out;
+    flex-shrink: 0;
+}
+
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Two Column Layout */
+.dfm-layout {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 30px;
+    flex: 1;
+    overflow: hidden;
+    animation: fadeInUp 0.6s ease-out 0.2s both;
+}
+
+/* Left Column: Description */
+.description-column {
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+/* Custom scrollbar for description column */
+.description-column::-webkit-scrollbar {
+    width: 6px;
+}
+
+.description-column::-webkit-scrollbar-track {
+    background: rgba(8, 149, 76, 0.05);
+    border-radius: 3px;
+}
+
+.description-column::-webkit-scrollbar-thumb {
+    background: rgba(8, 149, 76, 0.3);
+    border-radius: 3px;
+}
+
+.description-column::-webkit-scrollbar-thumb:hover {
+    background: rgba(8, 149, 76, 0.5);
+}
+
+.description-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(8, 149, 76, 0.1);
+    height: 100%;
+}
+
+.description-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.description-icon {
+    color: #08954C;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background: rgba(8, 149, 76, 0.1);
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.description-card h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin: 0;
+}
+
+.description-text {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #555;
+    margin-bottom: 12px;
+}
+
+.description-text:last-of-type {
+    margin-bottom: 0;
+}
+
+.description-text strong {
+    color: #08954C;
+    font-weight: 600;
+}
+
+/* DFM Sections */
+.dfm-definition,
+.dfm-focus,
+.dfm-usage {
+    margin-top: 20px;
+    padding: 18px;
+    background: rgba(8, 149, 76, 0.03);
+    border-left: 4px solid #08954C;
+    border-radius: 8px;
+}
+
+.description-card h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #08954C;
+    margin-bottom: 12px;
+    text-align: left;
+}
+
+.dfm-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 10px 0 0 0;
+}
+
+.dfm-list li {
+    font-size: 13px;
+    line-height: 1.7;
+    color: #555;
+    margin-bottom: 10px;
+    padding-left: 25px;
+    position: relative;
+}
+
+.dfm-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #08954C;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.dfm-list li:last-child {
+    margin-bottom: 0;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Right Column: Options */
+.options-column {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.section-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 25px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.options-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+/* Custom scrollbar for options column */
+.options-stack::-webkit-scrollbar {
+    width: 6px;
+}
+
+.options-stack::-webkit-scrollbar-track {
+    background: rgba(8, 149, 76, 0.05);
+    border-radius: 3px;
+}
+
+.options-stack::-webkit-scrollbar-thumb {
+    background: rgba(8, 149, 76, 0.3);
+    border-radius: 3px;
+}
+
+.options-stack::-webkit-scrollbar-thumb:hover {
+    background: rgba(8, 149, 76, 0.5);
+}
+
+/* Option Card */
+.option-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border-radius: 12px;
+    padding: 30px 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(8, 149, 76, 0.1);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.option-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(8, 149, 76, 0.05) 0%, rgba(8, 149, 76, 0.02) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.option-card:hover::before {
+    opacity: 1;
+}
+
+.option-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 32px rgba(8, 149, 76, 0.25);
+    border-color: rgba(8, 149, 76, 0.3);
+}
+
+.option-icon {
+    color: #08954C;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.4s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.option-card:hover .option-icon {
+    transform: scale(1.15) rotate(5deg);
+}
+
+.option-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 1;
+    transition: color 0.3s ease;
+}
+
+.option-card:hover .option-title {
+    color: #08954C;
+}
+
+.option-description {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #666;
+    margin-bottom: 25px;
+    flex-grow: 1;
+    position: relative;
+    z-index: 1;
+}
+
+.option-button {
+    background: linear-gradient(135deg, #08954C 0%, #06703a 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 28px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(8, 149, 76, 0.3);
+    position: relative;
+    z-index: 1;
+}
+
+.option-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(8, 149, 76, 0.4);
+}
+
+.option-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(8, 149, 76, 0.3);
+}
+
+.option-button svg {
+    transition: transform 0.3s ease;
+}
+
+.option-button:hover svg {
+    transform: translateX(5px);
+}
+
+/* Responsive Design for DFM Page */
+@media (max-width: 1200px) {
+    .dfm-layout {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .description-column,
+    .options-column {
+        overflow-y: auto;
+        max-height: 50vh;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-title {
+        font-size: 28px;
+        margin-bottom: 15px;
+    }
+    
+    .description-card {
+        padding: 20px;
+    }
+    
+    .option-card {
+        padding: 25px 20px;
+    }
+    
+    .section-title {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+}
