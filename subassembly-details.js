@@ -25,7 +25,6 @@ function addSubAssemblyRow() {
                 placeholder="Enter sub-assembly name" 
                 data-field="name"
                 oninput="validateSubAssembly(this)"
-                required
             >
         </td>
         <td class="col-category">
@@ -34,7 +33,6 @@ function addSubAssemblyRow() {
                 placeholder="e.g., Mechanical, Electrical, Housing" 
                 data-field="category"
                 oninput="validateSubAssembly(this)"
-                required
             >
         </td>
         <td class="col-process">
@@ -43,7 +41,6 @@ function addSubAssemblyRow() {
                 placeholder="e.g., Casting, Forging, Machining" 
                 data-field="process1"
                 oninput="validateSubAssembly(this)"
-                required
             >
         </td>
         <td class="col-process">
@@ -52,7 +49,6 @@ function addSubAssemblyRow() {
                 placeholder="e.g., Heat Treatment, Grinding" 
                 data-field="process2"
                 oninput="validateSubAssembly(this)"
-                required
             >
         </td>
         <td class="col-process">
@@ -61,7 +57,6 @@ function addSubAssemblyRow() {
                 placeholder="e.g., Surface Treatment, Assembly" 
                 data-field="process3"
                 oninput="validateSubAssembly(this)"
-                required
             >
         </td>
         <td class="col-actions">
@@ -91,15 +86,6 @@ function addSubAssemblyRow() {
 function deleteSubAssemblyRow(button) {
     const tbody = document.getElementById('subassembliesTableBody');
     const row = button.closest('tr');
-    
-    // Check if this is the last row with data
-    const allRows = Array.from(tbody.children);
-    const filledRows = allRows.filter(r => isRowFilled(r));
-    
-    if (filledRows.length === 1 && isRowFilled(row)) {
-        alert('Cannot delete the last sub-assembly with data. At least one sub-assembly must be defined.');
-        return;
-    }
     
     // Add exit animation
     row.style.animation = 'fadeOut 0.3s ease-out';
@@ -175,14 +161,9 @@ function validateForm() {
     
     const submitBtn = document.getElementById('submitBtn');
     
-    // Enable button only if at least one complete sub-assembly
-    if (completeRows.length > 0) {
-        submitBtn.disabled = false;
-        submitBtn.classList.add('enabled');
-    } else {
-        submitBtn.disabled = true;
-        submitBtn.classList.remove('enabled');
-    }
+    // Always enable the submit button - no validation required
+    submitBtn.disabled = false;
+    submitBtn.classList.add('enabled');
 }
 
 // Handle form submission
@@ -191,12 +172,7 @@ function handleSubmit() {
     const rows = Array.from(tbody.children);
     const completeRows = rows.filter(row => isRowComplete(row));
     
-    if (completeRows.length === 0) {
-        alert('Please add at least one complete sub-assembly before proceeding.');
-        return;
-    }
-    
-    // Collect sub-assembly data
+    // Collect sub-assembly data (even if empty)
     const subassemblies = completeRows.map(row => {
         const inputs = row.querySelectorAll('input');
         return {
@@ -208,7 +184,7 @@ function handleSubmit() {
         };
     });
     
-    // Save to localStorage
+    // Save to localStorage (even if empty array)
     localStorage.setItem('dfm_subassemblies', JSON.stringify(subassemblies));
     
     // Show success message
