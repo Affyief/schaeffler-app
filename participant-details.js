@@ -152,7 +152,9 @@ function createContactCard(contact, index) {
 
 // Open address book modal
 function openAddressBook() {
+    console.log('Opening address book modal');
     const modal = document.getElementById('addressBookModal');
+    console.log('Modal element:', modal);
     if (modal) {
         modal.style.display = 'flex';
         document.body.style.overflow = 'hidden'; // Prevent background scrolling
@@ -161,6 +163,8 @@ function openAddressBook() {
         setTimeout(() => {
             modal.classList.add('active');
         }, 10);
+    } else {
+        console.error('Address book modal not found!');
     }
 }
 
