@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Assessment Summary - Schaeffler DPFC</title>
+    <link rel="stylesheet" href="assessment-summary-styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <h1>Schaeffler DPFC</h1>
+            </div>
+            <div class="user-section">
+                <span class="user-icon">👤</span>
+                <span class="login-text">Schaeffler</span>
+            </div>
+        </header>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <nav>
+                <a href="index.html" class="nav-item">
+                    <span class="icon">🏠</span>
+                    <span class="label">Home</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="icon">📋</span>
+                    <span class="label">Catalog</span>
+                </a>
+                <a href="#" class="nav-item active">
+                    <span class="icon">💰</span>
+                    <span class="label">My Processes</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="icon">💬</span>
+                    <span class="label">Feedback</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="icon">❓</span>
+                    <span class="label">Support</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-content" id="mainContent">
+            <!-- Breadcrumb -->
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span>›</span>
+                <a href="dfm.html">Design for Manufacturing</a>
+                <span>›</span>
+                <a href="dfm-config.html">Configuration</a>
+                <span>›</span>
+                <a href="project-details.html">Project Details</a>
+                <span>›</span>
+                <a href="participant-details.html">Participant Details</a>
+                <span>›</span>
+                <a href="subassembly-details.html">Sub-Assembly Details</a>
+                <span>›</span>
+                <a href="product-images.html">Product Images</a>
+                <span>›</span>
+                <a href="area-selection.html">Area Selection</a>
+                <span>›</span>
+                <a href="questionnaire-full.html">Full Questionnaire</a>
+                <span>›</span>
+                <a href="overall-status.html">Overall Status</a>
+                <span>›</span>
+                <span class="current">Assessment Summary</span>
+            </div>
+
+            <!-- Page Title -->
+            <div class="page-header">
+                <h2>DFM Assessment Summary</h2>
+                <p class="page-description">Complete overview of your Design for Manufacturing assessment results.</p>
+            </div>
+
+            <!-- Sub-Assembly Header -->
+            <div class="summary-section">
+                <h3 class="section-title">Sub-Assembly Information</h3>
+                <div id="subassemblyInfo" class="info-card">
+                    <div class="subassembly-thumbnail">
+                        <span id="thumbnail-placeholder">📦</span>
+                        <img id="thumbnail-image" src="" alt="Sub-assembly" style="display: none;">
+                    </div>
+                    <div class="subassembly-details">
+                        <h4 id="subassembly-name">No sub-assembly selected</h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Overall Status Section -->
+            <div class="summary-section">
+                <h3 class="section-title">Overall Assessment Status</h3>
+                <div id="overallStatusDisplay" class="status-display">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Statistics Section -->
+            <div class="summary-section">
+                <h3 class="section-title">Assessment Statistics</h3>
+                <div id="statisticsDisplay" class="statistics-grid">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Management Summary Section -->
+            <div class="summary-section">
+                <h3 class="section-title">Management Summary</h3>
+                <div id="managementSummaryDisplay" class="summary-text">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="button-group">
+                <button type="button" class="btn btn-primary" onclick="finishAssessment()">
+                    <span>✓ Finish & Return to Home</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="assessment-summary.js"></script>
+</body>
+</html>

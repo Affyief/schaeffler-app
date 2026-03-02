@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Overall Status - Schaeffler DPFC</title>
+    <link rel="stylesheet" href="overall-status-styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <h1>Schaeffler DPFC</h1>
+            </div>
+            <div class="user-section">
+                <span class="user-icon">👤</span>
+                <span class="login-text">Schaeffler</span>
+            </div>
+        </header>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <nav>
+                <a href="index.html" class="nav-item">
+                    <span class="icon">🏠</span>
+                    <span class="label">Home</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="icon">📋</span>
+                    <span class="label">Catalog</span>
+                </a>
+                <a href="#" class="nav-item active">
+                    <span class="icon">💰</span>
+                    <span class="label">My Processes</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="icon">💬</span>
+                    <span class="label">Feedback</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <span class="icon">❓</span>
+                    <span class="label">Support</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-content" id="mainContent">
+            <!-- Breadcrumb -->
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span>›</span>
+                <a href="dfm.html">Design for Manufacturing</a>
+                <span>›</span>
+                <a href="dfm-config.html">Configuration</a>
+                <span>›</span>
+                <a href="project-details.html">Project Details</a>
+                <span>›</span>
+                <a href="participant-details.html">Participant Details</a>
+                <span>›</span>
+                <a href="subassembly-details.html">Sub-Assembly Details</a>
+                <span>›</span>
+                <a href="product-images.html">Product Images</a>
+                <span>›</span>
+                <a href="area-selection.html">Area Selection</a>
+                <span>›</span>
+                <a href="questionnaire-full.html">Full Questionnaire</a>
+                <span>›</span>
+                <span class="current">Overall Status</span>
+            </div>
+
+            <!-- Page Title -->
+            <div class="page-header">
+                <h2>Overall Assessment Status</h2>
+                <p class="page-description">Select the overall status for this DFM assessment and provide a management summary.</p>
+            </div>
+
+            <!-- Form Container -->
+            <div class="form-container">
+                <form id="overallStatusForm">
+                    <!-- Status Selection -->
+                    <div class="form-section">
+                        <label class="section-label">Overall Status</label>
+                        <div class="status-options">
+                            <label class="status-option status-green">
+                                <input type="radio" name="overallStatus" value="No Minor Problem" onchange="toggleWarning()">
+                                <div class="status-content">
+                                    <span class="status-indicator"></span>
+                                    <span class="status-label">No Minor Problem</span>
+                                </div>
+                            </label>
+
+                            <label class="status-option status-orange">
+                                <input type="radio" name="overallStatus" value="Medium Risk" onchange="toggleWarning()">
+                                <div class="status-content">
+                                    <span class="status-indicator"></span>
+                                    <span class="status-label">Medium Risk</span>
+                                </div>
+                            </label>
+
+                            <label class="status-option status-red">
+                                <input type="radio" name="overallStatus" value="High Risk" onchange="toggleWarning()">
+                                <div class="status-content">
+                                    <span class="status-indicator"></span>
+                                    <span class="status-label">High Risk</span>
+                                </div>
+                            </label>
+
+                            <label class="status-option status-purple">
+                                <input type="radio" name="overallStatus" value="Open" onchange="toggleWarning()">
+                                <div class="status-content">
+                                    <span class="status-indicator"></span>
+                                    <span class="status-label">Open</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Warning for High Risk -->
+                    <div id="highRiskWarning" class="warning-message" style="display: none;">
+                        <span class="warning-icon">⚠️</span>
+                        <span>Management summary is mandatory for high-risk status</span>
+                    </div>
+
+                    <!-- Management Summary -->
+                    <div class="form-section">
+                        <label class="section-label" for="managementSummary">Management Summary</label>
+                        <textarea 
+                            id="managementSummary" 
+                            name="managementSummary" 
+                            rows="10"
+                            placeholder="Provide a comprehensive summary of the assessment findings, key issues, and recommendations for management review..."
+                        ></textarea>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="button-group">
+                        <button type="button" class="btn btn-secondary" onclick="goBack()">
+                            <span>← Back</span>
+                        </button>
+                        <button type="submit" class="btn btn-primary" onclick="handleSubmit(event)">
+                            <span>Save & Continue →</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="overall-status.js"></script>
+</body>
+</html>
