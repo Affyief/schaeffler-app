@@ -67,13 +67,38 @@ function displaySubAssemblyHeader() {
             console.log('Name element or sub-assembly name not found');
         }
         
-        if (imageElement && placeholderElement && subAssembly.thumbnail) {
-            imageElement.src = subAssembly.thumbnail;
-            imageElement.style.display = 'block';
-            placeholderElement.style.display = 'none';
-            console.log('Set thumbnail image');
+        // Get images from separate storage
+        const productImages = localStorage.getItem('dfm_product_images');
+        console.log('Product images data:', productImages);
+        
+        if (productImages && imageElement && placeholderElement) {
+            try {
+                const imagesData = JSON.parse(productImages);
+                console.log('Parsed images data:', imagesData);
+                
+                // Get images for first sub-assembly (index 0)
+                const subAssemblyImages = imagesData[0];
+                console.log('Images for sub-assembly 0:', subAssemblyImages);
+                
+                if (subAssemblyImages && subAssemblyImages.length > 0) {
+                    // Use first image as thumbnail
+                    const firstImage = subAssemblyImages[0];
+                    console.log('First image:', firstImage);
+                    
+                    if (firstImage.dataUrl) {
+                        imageElement.src = firstImage.dataUrl;
+                        imageElement.style.display = 'block';
+                        placeholderElement.style.display = 'none';
+                        console.log('Set thumbnail image from product images');
+                    }
+                } else {
+                    console.log('No images found for first sub-assembly');
+                }
+            } catch (imageError) {
+                console.error('Error parsing product images:', imageError);
+            }
         } else {
-            console.log('Image elements or thumbnail not found');
+            console.log('Product images or image elements not found');
         }
         
         console.log('=== Sub-Assembly Header Display Complete ===');
