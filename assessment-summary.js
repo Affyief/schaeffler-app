@@ -35,12 +35,31 @@ function displaySubAssemblyInfo() {
                 nameElement.textContent = subAssembly.name || 'Unnamed Sub-assembly';
             }
             
-            // Display thumbnail
-            if (subAssembly.thumbnail) {
-                const thumbnailImg = document.getElementById('thumbnail-image');
-                const thumbnailPlaceholder = document.getElementById('thumbnail-placeholder');
+            // Display thumbnail - first try from product images
+            const thumbnailImg = document.getElementById('thumbnail-image');
+            const thumbnailPlaceholder = document.getElementById('thumbnail-placeholder');
+            
+            if (thumbnailImg && thumbnailPlaceholder) {
+                // Try to load from product images first
+                const productImagesData = localStorage.getItem('dfm_product_images');
+                if (productImagesData) {
+                    try {
+                        const imagesData = JSON.parse(productImagesData);
+                        const subAssemblyImages = imagesData[0]; // First sub-assembly
+                        if (subAssemblyImages && subAssemblyImages.length > 0) {
+                            const firstImage = subAssemblyImages[0];
+                            thumbnailImg.src = firstImage.dataUrl;
+                            thumbnailImg.style.display = 'block';
+                            thumbnailPlaceholder.style.display = 'none';
+                            console.log('Loaded image from product images');
+                        }
+                    } catch (err) {
+                        console.log('Could not load from product images:', err);
+                    }
+                }
                 
-                if (thumbnailImg && thumbnailPlaceholder) {
+                // Fallback to thumbnail property if exists
+                if (subAssembly.thumbnail && thumbnailImg.style.display !== 'block') {
                     thumbnailImg.src = subAssembly.thumbnail;
                     thumbnailImg.style.display = 'block';
                     thumbnailPlaceholder.style.display = 'none';
@@ -67,25 +86,30 @@ function displayOverallStatus() {
         
         // Determine status color class
         let statusClass = '';
-        switch(data.status) {
-            case 'No Minor Problem':
+        let statusLabel = '';
+        switch(data.overallStatus) {
+            case 'no_minor_problem':
                 statusClass = 'status-green';
+                statusLabel = 'No Minor Problem';
                 break;
-            case 'Medium Risk':
+            case 'medium_risk':
                 statusClass = 'status-orange';
+                statusLabel = 'Medium Risk';
                 break;
-            case 'High Risk':
+            case 'high_risk':
                 statusClass = 'status-red';
+                statusLabel = 'High Risk';
                 break;
-            case 'Open':
+            case 'open':
                 statusClass = 'status-purple';
+                statusLabel = 'Open';
                 break;
         }
         
         statusDisplay.innerHTML = `
             <div class="status-badge ${statusClass}">
                 <span class="status-indicator"></span>
-                <span class="status-text">${data.status}</span>
+                <span class="status-text">${statusLabel}</span>
             </div>
         `;
     } catch (error) {
@@ -96,13 +120,13 @@ function displayOverallStatus() {
 // Calculate Statistics from Questionnaire Data
 function calculateStatistics() {
     try {
-        const questionnaireData = localStorage.getItem('dfm_questionnaire');
+        const questionnaireData = localStorage.getItem('dfm_questionnaire_data');
         
         if (!questionnaireData) {
             displayStatistics({
-                noMinorProblem: 0,
-                mediumRisk: 0,
-                highRisk: 0,
+                ok: 0,
+                partially: 0,
+                nok: 0,
                 open: 0,
                 notRelevant: 0,
                 total: 0
@@ -114,9 +138,9 @@ function calculateStatistics() {
         
         // Initialize counters
         const stats = {
-            noMinorProblem: 0,
-            mediumRisk: 0,
-            highRisk: 0,
+            ok: 0,
+            partially: 0,
+            nok: 0,
             open: 0,
             notRelevant: 0,
             total: 0
@@ -129,19 +153,19 @@ function calculateStatistics() {
                 stats.total++;
                 
                 switch(status) {
-                    case 'No Minor Problem':
-                        stats.noMinorProblem++;
+                    case 'ok':
+                        stats.ok++;
                         break;
-                    case 'Medium Risk':
-                        stats.mediumRisk++;
+                    case 'partially':
+                        stats.partially++;
                         break;
-                    case 'High Risk':
-                        stats.highRisk++;
+                    case 'nok':
+                        stats.nok++;
                         break;
-                    case 'Open':
+                    case 'open':
                         stats.open++;
                         break;
-                    case 'Not Relevant':
+                    case 'not_relevant':
                         stats.notRelevant++;
                         break;
                 }
@@ -162,24 +186,24 @@ function displayStatistics(stats) {
         <div class="stat-card stat-green">
             <div class="stat-icon">✓</div>
             <div class="stat-content">
-                <div class="stat-value">${stats.noMinorProblem}</div>
-                <div class="stat-label">No Minor Problem</div>
+                <div class="stat-value">${stats.ok}</div>
+                <div class="stat-label">OK</div>
             </div>
         </div>
         
         <div class="stat-card stat-orange">
             <div class="stat-icon">⚠</div>
             <div class="stat-content">
-                <div class="stat-value">${stats.mediumRisk}</div>
-                <div class="stat-label">Medium Risk</div>
+                <div class="stat-value">${stats.partially}</div>
+                <div class="stat-label">Partially</div>
             </div>
         </div>
         
         <div class="stat-card stat-red">
             <div class="stat-icon">✕</div>
             <div class="stat-content">
-                <div class="stat-value">${stats.highRisk}</div>
-                <div class="stat-label">High Risk</div>
+                <div class="stat-value">${stats.nok}</div>
+                <div class="stat-label">NOK</div>
             </div>
         </div>
         
@@ -222,10 +246,10 @@ function displayManagementSummary() {
         
         const data = JSON.parse(statusData);
         
-        if (data.summary && data.summary.trim()) {
+        if (data.managementSummary && data.managementSummary.trim()) {
             const p = document.createElement('p');
             p.className = 'summary-content';
-            p.textContent = data.summary;
+            p.textContent = data.managementSummary;
             summaryDisplay.innerHTML = '';
             summaryDisplay.appendChild(p);
         } else {
