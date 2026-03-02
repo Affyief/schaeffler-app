@@ -59,6 +59,8 @@ document.addEventListener('DOMContentLoaded', function() {
         proceedBtn.addEventListener('click', function() {
             if (config.currentStep === config.totalSteps) {
                 console.log('All selections completed:', config.selections);
+                // Store selections in sessionStorage for next page
+                sessionStorage.setItem('dfmConfig', JSON.stringify(config.selections));
                 // Navigate to Project Details page
                 window.location.href = 'project-details.html';
             }

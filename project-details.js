@@ -14,6 +14,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize form
     function init() {
+        // Load saved configuration from previous page
+        loadSavedConfiguration();
+
         // Add validation listeners to all inputs
         inputs.forEach(input => {
             // Mark field as touched on blur
@@ -48,6 +51,37 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Load saved configuration from previous page
+    function loadSavedConfiguration() {
+        try {
+            const savedConfig = sessionStorage.getItem('dfmConfig');
+            if (savedConfig) {
+                const config = JSON.parse(savedConfig);
+                
+                // Auto-populate Project Type
+                const projectTypeInput = document.getElementById('projectType');
+                if (projectTypeInput && config.projectType) {
+                    projectTypeInput.value = config.projectType.toUpperCase();
+                    projectTypeInput.classList.add('success');
+                }
+                
+                // Auto-populate Manufacturing Location
+                const mfrLocationInput = document.getElementById('mfrLocation');
+                if (mfrLocationInput && config.location) {
+                    // Capitalize first letter of each word
+                    const locationName = config.location
+                        .split('-')
+                        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                        .join(' ');
+                    mfrLocationInput.value = locationName;
+                    mfrLocationInput.classList.add('success');
+                }
+            }
+        } catch (error) {
+            console.error('Error loading saved configuration:', error);
+        }
+    }
+
     // Validate individual field
     function validateField(field) {
         const fieldContainer = field.closest('.form-field');
@@ -65,37 +99,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Validate date logic (start before completion)
     function validateDateFields() {
-        // Validate G40 dates
-        const startG40 = document.getElementById('startDateG40');
-        const completionG40 = document.getElementById('completionDateG40');
+        // Validate DFMA dates
+        const startDFMA = document.getElementById('startDateDFMA');
+        const completionDFMA = document.getElementById('completionDateDFMA');
         
-        if (startG40.value && completionG40.value) {
-            if (new Date(startG40.value) >= new Date(completionG40.value)) {
-                showNotification('G40 completion date must be after start date', 'warning');
-                completionG40.setCustomValidity('Completion date must be after start date');
+        // Only validate if both dates are filled (completion is optional)
+        if (startDFMA && startDFMA.value && completionDFMA && completionDFMA.value) {
+            if (new Date(startDFMA.value) >= new Date(completionDFMA.value)) {
+                showNotification('DFMA completion date must be after start date', 'warning');
+                completionDFMA.setCustomValidity('Completion date must be after start date');
             } else {
-                completionG40.setCustomValidity('');
+                completionDFMA.setCustomValidity('');
             }
-        }
-
-        // Validate G50 dates
-        const startG50 = document.getElementById('startDateG50');
-        const completionG50 = document.getElementById('completionDateG50');
-        
-        if (startG50.value && completionG50.value) {
-            if (new Date(startG50.value) >= new Date(completionG50.value)) {
-                showNotification('G50 completion date must be after start date', 'warning');
-                completionG50.setCustomValidity('Completion date must be after start date');
-            } else {
-                completionG50.setCustomValidity('');
-            }
-        }
-
-        // Validate G50 starts after G40 completes (recommended)
-        if (completionG40.value && startG50.value) {
-            if (new Date(startG50.value) < new Date(completionG40.value)) {
-                showNotification('Note: G50 typically starts after G40 completion', 'info');
-            }
+        } else if (completionDFMA) {
+            // Clear any previous validation errors
+            completionDFMA.setCustomValidity('');
         }
     }
 
