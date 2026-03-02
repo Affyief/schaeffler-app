@@ -409,7 +409,7 @@ function handleSubmit(event) {
         // Navigate to next page after delay
         setTimeout(() => {
             // Placeholder: Navigate to next step in workflow
-            window.location.href = 'index.html'; // Replace with actual next page
+            window.location.href = 'overall-status.html'; // Navigate to Overall Status page
         }, 1500);
         
     } catch (error) {
