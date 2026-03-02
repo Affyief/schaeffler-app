@@ -1,6 +1,9 @@
 // Questionnaire Full - JavaScript
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Filter questions by selected areas first
+    filterQuestionsBySelectedAreas();
+    
     // Initialize
     loadSavedData();
     setupEventListeners();
@@ -9,6 +12,87 @@ document.addEventListener('DOMContentLoaded', function() {
     // Auto-save every 30 seconds
     setInterval(autoSave, 30000);
 });
+
+// Filter Questions by Selected Areas
+function filterQuestionsBySelectedAreas() {
+    try {
+        // Get selected areas from localStorage
+        const areaSelection = localStorage.getItem('dfm_area_selection');
+        if (!areaSelection) {
+            console.log('No area selection found, showing all questions');
+            return;
+        }
+        
+        const data = JSON.parse(areaSelection);
+        const selectedAreas = data.areas || [];
+        
+        if (selectedAreas.length === 0) {
+            console.log('No areas selected, showing all questions');
+            return;
+        }
+        
+        console.log('Selected areas:', selectedAreas);
+        
+        // Map area values to question prefixes
+        const areaToPrefix = {
+            'general': 'GE',
+            'pcb': 'PCB',
+            'bare_die': 'BD',
+            'assembly': 'AS',
+            'material': 'MAT',
+            'test': 'TE',
+            'results': 'RS',
+            'others': 'OT'
+        };
+        
+        // Get prefixes for selected areas
+        const selectedPrefixes = selectedAreas.map(area => areaToPrefix[area]).filter(Boolean);
+        console.log('Selected prefixes:', selectedPrefixes);
+        
+        // Get all section groups
+        const sectionGroups = document.querySelectorAll('.section-group');
+        
+        sectionGroups.forEach(group => {
+            // Get the section header to determine the area
+            const sectionHeader = group.querySelector('.section-header h2');
+            if (!sectionHeader) return;
+            
+            const sectionText = sectionHeader.textContent.trim();
+            
+            // Check if this section matches any selected area
+            let shouldShow = false;
+            
+            for (const prefix of selectedPrefixes) {
+                // Check if section contains questions with this prefix
+                const questionsInSection = group.querySelectorAll('.question-number');
+                for (const questionNum of questionsInSection) {
+                    if (questionNum.textContent.trim().startsWith(prefix)) {
+                        shouldShow = true;
+                        break;
+                    }
+                }
+                if (shouldShow) break;
+            }
+            
+            // Hide or show the section
+            if (!shouldShow) {
+                group.style.display = 'none';
+                console.log('Hiding section:', sectionText);
+            } else {
+                group.style.display = 'block';
+                console.log('Showing section:', sectionText);
+            }
+        });
+        
+        // Update the visible questions count
+        setTimeout(() => {
+            updateProgress();
+        }, 100);
+        
+    } catch (e) {
+        console.error('Error filtering questions:', e);
+    }
+}
 
 // Setup Event Listeners
 function setupEventListeners() {
@@ -49,9 +133,16 @@ function updateQuestionCard(radio) {
 
 // Update Progress
 function updateProgress() {
-    const totalQuestions = document.querySelectorAll('.question-card').length;
-    const completedQuestions = document.querySelectorAll('.question-card.completed').length;
-    const percentage = Math.round((completedQuestions / totalQuestions) * 100);
+    // Only count visible question cards (not hidden by area filter)
+    const allQuestionCards = document.querySelectorAll('.question-card');
+    const visibleQuestionCards = Array.from(allQuestionCards).filter(card => {
+        const sectionGroup = card.closest('.section-group');
+        return !sectionGroup || sectionGroup.style.display !== 'none';
+    });
+    
+    const totalQuestions = visibleQuestionCards.length;
+    const completedQuestions = visibleQuestionCards.filter(card => card.classList.contains('completed')).length;
+    const percentage = totalQuestions > 0 ? Math.round((completedQuestions / totalQuestions) * 100) : 0;
     
     // Update progress bar
     const progressFill = document.getElementById('progressFill');

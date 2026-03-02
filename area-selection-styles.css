@@ -538,3 +538,123 @@ body {
         justify-content: center;
     }
 }
+
+/* Checkbox Wrapper Styles */
+.checkbox-wrapper {
+    padding: 1.5rem;
+}
+
+.checkbox-label-main {
+    display: block;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+}
+
+.checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.75rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background: #fff;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.checkbox-item:hover {
+    border-color: #08954C;
+    background: #f8fff8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(8, 149, 76, 0.15);
+}
+
+.checkbox-item input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkbox-custom {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #cbd5e0;
+    border-radius: 4px;
+    margin-right: 0.75rem;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+    position: relative;
+    background: white;
+}
+
+.checkbox-item input[type="checkbox"]:checked ~ .checkbox-custom {
+    background: linear-gradient(135deg, #08954C 0%, #0ab05e 100%);
+    border-color: #08954C;
+}
+
+.checkbox-item input[type="checkbox"]:checked ~ .checkbox-custom::after {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.checkbox-item input[type="checkbox"]:checked ~ .checkbox-text {
+    color: #08954C;
+    font-weight: 600;
+}
+
+.checkbox-item input[type="checkbox"]:checked {
+    border-color: #08954C;
+    background: #f8fff8;
+}
+
+.checkbox-item:has(input[type="checkbox"]:checked) {
+    border-color: #08954C;
+    background: linear-gradient(135deg, #f8fff8 0%, #e8f5e9 100%);
+    box-shadow: 0 4px 12px rgba(8, 149, 76, 0.2);
+}
+
+.checkbox-text {
+    font-size: 0.95rem;
+    color: #2c3e50;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.selection-summary {
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #08954C;
+}
+
+.summary-text {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #08954C;
+    transition: color 0.3s ease;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .checkbox-grid {
+        grid-template-columns: 1fr;
+    }
+}

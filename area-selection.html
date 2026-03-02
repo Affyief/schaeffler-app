@@ -90,31 +90,58 @@
                 <div class="selection-card">
                     <div class="card-header">
                         <div class="step-badge">1</div>
-                        <h2>Select Area</h2>
+                        <h2>Select Areas</h2>
                     </div>
-                    <div class="dropdown-wrapper">
-                        <label for="areaSelect" class="dropdown-label">
-                            Assessment Area <span class="required">*</span>
+                    <div class="checkbox-wrapper">
+                        <label class="checkbox-label-main">
+                            Assessment Areas <span class="required">*</span>
                         </label>
-                        <div class="custom-select">
-                            <select id="areaSelect" required>
-                                <option value="">Choose an area...</option>
-                                <option value="bare_die">Bare Die</option>
-                                <option value="pcb">PCB</option>
-                                <option value="assembly">Assembly</option>
-                                <option value="material">Material</option>
-                                <option value="test">Test</option>
-                                <option value="results">Results</option>
-                                <option value="general">General</option>
-                                <option value="others">Others</option>
-                            </select>
-                            <div class="select-arrow">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polyline points="6 9 12 15 18 9"></polyline>
-                                </svg>
-                            </div>
+                        <p class="helper-text">Select one or more assessment areas for your DFM process</p>
+                        <div class="checkbox-grid" id="areaCheckboxes">
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="area" value="general">
+                                <span class="checkbox-custom"></span>
+                                <span class="checkbox-text">General</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="area" value="pcb">
+                                <span class="checkbox-custom"></span>
+                                <span class="checkbox-text">PCB</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="area" value="bare_die">
+                                <span class="checkbox-custom"></span>
+                                <span class="checkbox-text">Bare Die</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="area" value="assembly">
+                                <span class="checkbox-custom"></span>
+                                <span class="checkbox-text">Assembly</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="area" value="material">
+                                <span class="checkbox-custom"></span>
+                                <span class="checkbox-text">Material</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="area" value="test">
+                                <span class="checkbox-custom"></span>
+                                <span class="checkbox-text">Test</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="area" value="results">
+                                <span class="checkbox-custom"></span>
+                                <span class="checkbox-text">Results</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="area" value="others">
+                                <span class="checkbox-custom"></span>
+                                <span class="checkbox-text">Others</span>
+                            </label>
                         </div>
-                        <p class="helper-text">Select the primary assessment area for your DFM process</p>
+                        <div class="selection-summary" id="selectionSummary">
+                            <span class="summary-text">0 areas selected</span>
+                        </div>
                     </div>
                 </div>
 

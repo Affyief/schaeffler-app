@@ -2,7 +2,8 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     // Get DOM elements
-    const areaSelect = document.getElementById('areaSelect');
+    const areaCheckboxes = document.querySelectorAll('input[name="area"]');
+    const selectionSummary = document.getElementById('selectionSummary');
     const questionnaireType = document.getElementById('questionnaireType');
     const subAreaSelect = document.getElementById('subAreaSelect');
     const subAreaCard = document.getElementById('subAreaCard');
@@ -16,22 +17,24 @@ document.addEventListener('DOMContentLoaded', function() {
     setInterval(saveData, 30000);
 
     // Event Listeners
-    areaSelect.addEventListener('change', handleAreaChange);
+    areaCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', handleAreaChange);
+    });
     questionnaireType.addEventListener('change', handleQuestionnaireTypeChange);
     subAreaSelect.addEventListener('change', validateForm);
     submitBtn.addEventListener('click', handleSubmit);
 
     // Handle Area Selection Change
     function handleAreaChange() {
-        const areaValue = areaSelect.value;
+        const selectedAreas = getSelectedAreas();
         
-        if (areaValue) {
+        // Update summary
+        updateSelectionSummary(selectedAreas.length);
+        
+        if (selectedAreas.length > 0) {
             // Enable questionnaire type dropdown
             questionnaireType.disabled = false;
             questionnaireType.parentElement.parentElement.parentElement.classList.remove('disabled');
-            
-            // Add valid class
-            areaSelect.classList.add('valid');
             
             // Save data
             saveData();
@@ -51,9 +54,33 @@ document.addEventListener('DOMContentLoaded', function() {
             subAreaCard.classList.add('disabled');
             subAreaCard.classList.remove('enabled');
             
-            areaSelect.classList.remove('valid');
-            
             validateForm();
+        }
+    }
+    
+    // Get Selected Areas
+    function getSelectedAreas() {
+        const selected = [];
+        areaCheckboxes.forEach(checkbox => {
+            if (checkbox.checked) {
+                selected.push(checkbox.value);
+            }
+        });
+        return selected;
+    }
+    
+    // Update Selection Summary
+    function updateSelectionSummary(count) {
+        const summaryText = selectionSummary.querySelector('.summary-text');
+        if (count === 0) {
+            summaryText.textContent = '0 areas selected';
+            summaryText.style.color = '#dc3545';
+        } else if (count === 1) {
+            summaryText.textContent = '1 area selected';
+            summaryText.style.color = '#08954C';
+        } else {
+            summaryText.textContent = `${count} areas selected`;
+            summaryText.style.color = '#08954C';
         }
     }
 
@@ -97,15 +124,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Validate Form
     function validateForm() {
-        const areaValue = areaSelect.value;
+        const selectedAreas = getSelectedAreas();
         const typeValue = questionnaireType.value;
         const subAreaValue = subAreaSelect.value;
 
         let isValid = false;
 
-        if (areaValue && typeValue) {
+        if (selectedAreas.length > 0 && typeValue) {
             if (typeValue === 'full') {
-                // For full questionnaire, area and type are enough
+                // For full questionnaire, areas and type are enough
                 isValid = true;
             } else if (typeValue === 'sub_area') {
                 // For sub-area questionnaire, need sub-area selection too
@@ -163,8 +190,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Save Data to localStorage
     function saveData() {
+        const selectedAreas = getSelectedAreas();
         const data = {
-            area: areaSelect.value,
+            areas: selectedAreas, // Changed from 'area' to 'areas' (array)
             questionnaireType: questionnaireType.value,
             subArea: subAreaSelect.value,
             timestamp: new Date().toISOString()
@@ -185,10 +213,24 @@ document.addEventListener('DOMContentLoaded', function() {
             if (savedData) {
                 const data = JSON.parse(savedData);
                 
-                // Restore area selection
-                if (data.area) {
-                    areaSelect.value = data.area;
-                    areaSelect.classList.add('valid');
+                // Restore area selections (handle both old single value and new array format)
+                if (data.areas && Array.isArray(data.areas)) {
+                    // New format: array of areas
+                    areaCheckboxes.forEach(checkbox => {
+                        if (data.areas.includes(checkbox.value)) {
+                            checkbox.checked = true;
+                        }
+                    });
+                    updateSelectionSummary(data.areas.length);
+                    handleAreaChange();
+                } else if (data.area) {
+                    // Old format: single area value - convert to new format
+                    areaCheckboxes.forEach(checkbox => {
+                        if (checkbox.value === data.area) {
+                            checkbox.checked = true;
+                        }
+                    });
+                    updateSelectionSummary(1);
                     handleAreaChange();
                 }
 
