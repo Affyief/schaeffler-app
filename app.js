@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('Icon clicked:', caption);
             
             // Navigate to specific pages based on card clicked
-            if (caption === 'Design for Manufacturing') {
+            if (caption === 'Design For Manufacturing and Assembly') {
                 window.location.href = 'dfm.html';
             } else {
                 // Placeholder for future pages
