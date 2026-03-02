@@ -1,17 +1,86 @@
 // Questionnaire Full - JavaScript
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Display sub-assembly header
+    displaySubAssemblyHeader();
+    
     // Filter questions by selected areas first
     filterQuestionsBySelectedAreas();
     
     // Initialize
     loadSavedData();
     setupEventListeners();
+    
+    // Pre-select all questions to "Not Relevant"
+    preselectNotRelevant();
+    
     updateProgress();
     
     // Auto-save every 30 seconds
     setInterval(autoSave, 30000);
 });
+
+// Display Sub-Assembly Header
+function displaySubAssemblyHeader() {
+    try {
+        const subAssembliesData = localStorage.getItem('dfm_subassemblies');
+        if (!subAssembliesData) {
+            console.log('No sub-assembly data found');
+            return;
+        }
+        
+        const data = JSON.parse(subAssembliesData);
+        const subAssemblies = data.subAssemblies || [];
+        
+        if (subAssemblies.length === 0) {
+            console.log('No sub-assemblies in data');
+            return;
+        }
+        
+        // Use the first sub-assembly
+        const subAssembly = subAssemblies[0];
+        const nameElement = document.getElementById('subassembly-name');
+        const imageElement = document.getElementById('thumbnail-image');
+        const placeholderElement = document.getElementById('thumbnail-placeholder');
+        
+        if (nameElement && subAssembly.name) {
+            nameElement.textContent = subAssembly.name;
+        }
+        
+        if (imageElement && placeholderElement && subAssembly.thumbnail) {
+            imageElement.src = subAssembly.thumbnail;
+            imageElement.style.display = 'block';
+            placeholderElement.style.display = 'none';
+        }
+        
+        console.log('Sub-assembly header displayed:', subAssembly.name);
+    } catch (error) {
+        console.error('Error displaying sub-assembly header:', error);
+    }
+}
+
+// Pre-select all questions to "Not Relevant"
+function preselectNotRelevant() {
+    try {
+        // Find all "Not Relevant" radio buttons
+        const notRelevantButtons = document.querySelectorAll('input[type="radio"][value="not_relevant"]');
+        
+        notRelevantButtons.forEach(radio => {
+            // Only check if nothing is already selected for this question
+            const questionName = radio.name;
+            const anyChecked = document.querySelector(`input[name="${questionName}"]:checked`);
+            
+            if (!anyChecked) {
+                radio.checked = true;
+            }
+        });
+        
+        console.log('Pre-selected all unchecked questions to "Not Relevant"');
+        updateProgress();
+    } catch (error) {
+        console.error('Error pre-selecting questions:', error);
+    }
+}
 
 // Filter Questions by Selected Areas
 function filterQuestionsBySelectedAreas() {
