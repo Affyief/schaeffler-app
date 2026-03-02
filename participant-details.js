@@ -15,28 +15,29 @@ document.addEventListener('DOMContentLoaded', function() {
 // Address book contacts data
 const addressBookContacts = [
     {
-        firstName: "Dr. Sarah",
-        lastName: "Mitchell",
-        title: "Senior Design Engineer",
-        department: "Product Development",
-        email: "sarah.mitchell@schaeffler.com",
-        phone: "+49 9132 82-4521",
-        location: "Herzogenaurach, Germany",
-        organization: "Schaeffler AG",
-        role: "Design Engineer",
-        avatar: "SM"
+        firstName: "Rene",
+        lastName: "Schramm",
+        title: "Head of Production Systems",
+        titlePrefix: "Dr.",
+        department: "PRODUCTION CONCEPTS, PROCS. & FRAMEWORK",
+        email: "rene.schramm@vitesco.com",
+        phone: "+49 911 9526 1720",
+        location: "Nürnberg, Germany",
+        organization: "Vitesco Technologies",
+        role: "Head of Production Systems",
+        avatar: "RS"
     },
     {
-        firstName: "Michael",
-        lastName: "Anderson",
-        title: "Manufacturing Process Manager",
-        department: "Production Engineering",
-        email: "michael.anderson@schaeffler.com",
-        phone: "+49 9132 82-3892",
-        location: "Schweinfurt, Germany",
-        organization: "Schaeffler Technologies AG & Co. KG",
-        role: "Process Manager",
-        avatar: "MA"
+        firstName: "Andreas",
+        lastName: "Stein",
+        title: "Cluster Manager DESIGN.net",
+        department: "PRODUCTION CONCEPTS, PROCS. & FRAMEWORK",
+        email: "andreas.stein@vitesco.com",
+        phone: "+49 911 9526 2897",
+        location: "Nürnberg, Germany",
+        organization: "Vitesco Technologies",
+        role: "Cluster Manager DESIGN.net",
+        avatar: "AS"
     },
     {
         firstName: "Lisa",
@@ -93,11 +94,21 @@ function initializeAddressBook() {
 function createContactCard(contact, index) {
     const card = document.createElement('div');
     card.className = 'contact-card';
+    
+    // Create display name with title prefix if exists
+    const displayName = contact.titlePrefix 
+        ? `${contact.lastName}, ${contact.firstName}` 
+        : `${contact.firstName} ${contact.lastName}`;
+    
+    const titleBadge = contact.titlePrefix 
+        ? `<span class="title-badge">${contact.titlePrefix}</span>` 
+        : '';
+    
     card.innerHTML = `
         <div class="contact-header">
             <div class="contact-avatar">${contact.avatar}</div>
             <div class="contact-info">
-                <h3 class="contact-name">${contact.firstName} ${contact.lastName}</h3>
+                <h3 class="contact-name">${displayName} ${titleBadge}</h3>
                 <p class="contact-title">${contact.title}</p>
             </div>
         </div>
@@ -229,6 +240,42 @@ function selectContact(index) {
     
     // Close the modal
     closeAddressBook();
+}
+
+// Filter contacts based on search input
+function filterContacts() {
+    const searchInput = document.getElementById('addressBookSearch');
+    const searchTerm = searchInput.value.toLowerCase().trim();
+    const contactCards = document.querySelectorAll('.contact-card');
+    const noResults = document.getElementById('noResults');
+    
+    let visibleCount = 0;
+    
+    contactCards.forEach((card, index) => {
+        const contact = addressBookContacts[index];
+        const firstName = contact.firstName.toLowerCase();
+        const lastName = contact.lastName.toLowerCase();
+        const fullName = `${firstName} ${lastName}`;
+        
+        // Check if search term matches first name, last name, or full name
+        const matches = firstName.includes(searchTerm) || 
+                       lastName.includes(searchTerm) ||
+                       fullName.includes(searchTerm);
+        
+        if (matches) {
+            card.style.display = 'block';
+            visibleCount++;
+        } else {
+            card.style.display = 'none';
+        }
+    });
+    
+    // Show/hide "no results" message
+    if (visibleCount === 0) {
+        noResults.style.display = 'block';
+    } else {
+        noResults.style.display = 'none';
+    }
 }
 
 

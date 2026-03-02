@@ -704,6 +704,66 @@ body {
     font-size: 1rem;
 }
 
+/* Address Book Search */
+.address-book-search {
+    margin-bottom: 1.5rem;
+}
+
+.search-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-icon {
+    position: absolute;
+    left: 1rem;
+    color: #6b7280;
+    pointer-events: none;
+}
+
+#addressBookSearch {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 3rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+}
+
+#addressBookSearch:focus {
+    outline: none;
+    border-color: #08954C;
+    box-shadow: 0 0 0 3px rgba(8, 149, 76, 0.1);
+}
+
+#addressBookSearch::placeholder {
+    color: #9ca3af;
+}
+
+.no-results-message {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: #6b7280;
+    font-size: 1.1rem;
+}
+
+.no-results-message p {
+    margin: 0;
+}
+
+.title-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #08954C 0%, #0ab05e 100%);
+    color: white;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+}
+
 /* Contacts Grid */
 .contacts-grid {
     display: grid;

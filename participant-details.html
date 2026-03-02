@@ -178,8 +178,28 @@
             </div>
             <div class="modal-body">
                 <p class="modal-subtitle">Select a contact to add to your project team</p>
+                
+                <!-- Search Bar -->
+                <div class="address-book-search">
+                    <div class="search-input-wrapper">
+                        <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <input 
+                            type="text" 
+                            id="addressBookSearch" 
+                            placeholder="Search contacts by name..." 
+                            onkeyup="filterContacts()"
+                        />
+                    </div>
+                </div>
+                
                 <div class="contacts-grid" id="contactsGrid">
                     <!-- Contacts will be populated by JavaScript -->
+                </div>
+                
+                <div class="no-results-message" id="noResults" style="display: none;">
+                    <p>No contacts found</p>
                 </div>
             </div>
         </div>
