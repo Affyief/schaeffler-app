@@ -223,7 +223,11 @@ function displayManagementSummary() {
         const data = JSON.parse(statusData);
         
         if (data.summary && data.summary.trim()) {
-            summaryDisplay.innerHTML = `<p class="summary-content">${data.summary}</p>`;
+            const p = document.createElement('p');
+            p.className = 'summary-content';
+            p.textContent = data.summary;
+            summaryDisplay.innerHTML = '';
+            summaryDisplay.appendChild(p);
         } else {
             summaryDisplay.innerHTML = '<p class="no-data">No management summary provided</p>';
         }
