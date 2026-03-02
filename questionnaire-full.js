@@ -23,39 +23,63 @@ document.addEventListener('DOMContentLoaded', function() {
 // Display Sub-Assembly Header
 function displaySubAssemblyHeader() {
     try {
+        console.log('=== Displaying Sub-Assembly Header ===');
         const subAssembliesData = localStorage.getItem('dfm_subassemblies');
+        console.log('Raw localStorage data:', subAssembliesData);
+        
         if (!subAssembliesData) {
-            console.log('No sub-assembly data found');
+            console.log('No sub-assembly data found in localStorage');
             return;
         }
         
-        const data = JSON.parse(subAssembliesData);
-        const subAssemblies = data.subAssemblies || [];
+        const subAssemblies = JSON.parse(subAssembliesData);
+        console.log('Parsed sub-assemblies:', subAssemblies);
+        console.log('Sub-assemblies type:', typeof subAssemblies);
+        console.log('Is array:', Array.isArray(subAssemblies));
         
-        if (subAssemblies.length === 0) {
-            console.log('No sub-assemblies in data');
+        // Check if it's an array directly or wrapped in an object
+        let subAssembliesArray = [];
+        if (Array.isArray(subAssemblies)) {
+            subAssembliesArray = subAssemblies;
+        } else if (subAssemblies.subAssemblies && Array.isArray(subAssemblies.subAssemblies)) {
+            subAssembliesArray = subAssemblies.subAssemblies;
+        }
+        
+        console.log('Final sub-assemblies array:', subAssembliesArray);
+        
+        if (subAssembliesArray.length === 0) {
+            console.log('No sub-assemblies in array');
             return;
         }
         
         // Use the first sub-assembly
-        const subAssembly = subAssemblies[0];
+        const subAssembly = subAssembliesArray[0];
+        console.log('First sub-assembly:', subAssembly);
+        
         const nameElement = document.getElementById('subassembly-name');
         const imageElement = document.getElementById('thumbnail-image');
         const placeholderElement = document.getElementById('thumbnail-placeholder');
         
         if (nameElement && subAssembly.name) {
             nameElement.textContent = subAssembly.name;
+            console.log('Set name to:', subAssembly.name);
+        } else {
+            console.log('Name element or sub-assembly name not found');
         }
         
         if (imageElement && placeholderElement && subAssembly.thumbnail) {
             imageElement.src = subAssembly.thumbnail;
             imageElement.style.display = 'block';
             placeholderElement.style.display = 'none';
+            console.log('Set thumbnail image');
+        } else {
+            console.log('Image elements or thumbnail not found');
         }
         
-        console.log('Sub-assembly header displayed:', subAssembly.name);
+        console.log('=== Sub-Assembly Header Display Complete ===');
     } catch (error) {
         console.error('Error displaying sub-assembly header:', error);
+        console.error('Error stack:', error.stack);
     }
 }
 
@@ -85,8 +109,12 @@ function preselectNotRelevant() {
 // Filter Questions by Selected Areas
 function filterQuestionsBySelectedAreas() {
     try {
+        console.log('=== Filtering Questions by Selected Areas ===');
+        
         // Get selected areas from localStorage
         const areaSelection = localStorage.getItem('dfm_area_selection');
+        console.log('Raw area selection:', areaSelection);
+        
         if (!areaSelection) {
             console.log('No area selection found, showing all questions');
             return;
@@ -95,12 +123,13 @@ function filterQuestionsBySelectedAreas() {
         const data = JSON.parse(areaSelection);
         const selectedAreas = data.areas || [];
         
+        console.log('Parsed data:', data);
+        console.log('Selected areas:', selectedAreas);
+        
         if (selectedAreas.length === 0) {
             console.log('No areas selected, showing all questions');
             return;
         }
-        
-        console.log('Selected areas:', selectedAreas);
         
         // Map area values to question prefixes
         const areaToPrefix = {
@@ -116,42 +145,48 @@ function filterQuestionsBySelectedAreas() {
         
         // Get prefixes for selected areas
         const selectedPrefixes = selectedAreas.map(area => areaToPrefix[area]).filter(Boolean);
-        console.log('Selected prefixes:', selectedPrefixes);
+        console.log('Selected prefixes to show:', selectedPrefixes);
         
-        // Get all section groups
-        const sectionGroups = document.querySelectorAll('.section-group');
+        if (selectedPrefixes.length === 0) {
+            console.log('No valid prefixes, showing all questions');
+            return;
+        }
         
-        sectionGroups.forEach(group => {
-            // Get the section header to determine the area
-            const sectionHeader = group.querySelector('.section-header h2');
-            if (!sectionHeader) return;
-            
-            const sectionText = sectionHeader.textContent.trim();
-            
-            // Check if this section matches any selected area
-            let shouldShow = false;
-            
-            for (const prefix of selectedPrefixes) {
-                // Check if section contains questions with this prefix
-                const questionsInSection = group.querySelectorAll('.question-number');
-                for (const questionNum of questionsInSection) {
-                    if (questionNum.textContent.trim().startsWith(prefix)) {
-                        shouldShow = true;
-                        break;
-                    }
-                }
-                if (shouldShow) break;
+        // Get all section cards (each individual question section)
+        const sectionCards = document.querySelectorAll('.section-card');
+        console.log('Total section cards found:', sectionCards.length);
+        
+        let hiddenCount = 0;
+        let shownCount = 0;
+        
+        sectionCards.forEach(card => {
+            // Get the section badge which contains the prefix (e.g., "GE 1.0", "PCB 2.1")
+            const badge = card.querySelector('.section-badge');
+            if (!badge) {
+                console.log('No badge found for a card, showing by default');
+                card.style.display = 'block';
+                shownCount++;
+                return;
             }
             
-            // Hide or show the section
-            if (!shouldShow) {
-                group.style.display = 'none';
-                console.log('Hiding section:', sectionText);
+            const badgeText = badge.textContent.trim();
+            // Extract just the prefix part (e.g., "GE" from "GE 1.0")
+            const prefix = badgeText.split(' ')[0];
+            
+            // Check if this section's prefix is in the selected prefixes
+            const shouldShow = selectedPrefixes.includes(prefix);
+            
+            if (shouldShow) {
+                card.style.display = 'block';
+                shownCount++;
             } else {
-                group.style.display = 'block';
-                console.log('Showing section:', sectionText);
+                card.style.display = 'none';
+                hiddenCount++;
             }
         });
+        
+        console.log(`Filtering complete: ${shownCount} sections shown, ${hiddenCount} sections hidden`);
+        console.log('=== Area Filtering Complete ===');
         
         // Update the visible questions count
         setTimeout(() => {
