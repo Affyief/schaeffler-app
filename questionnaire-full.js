@@ -240,7 +240,6 @@ function setupEventListeners() {
         radio.addEventListener('change', function() {
             updateQuestionCard(this);
             updateProgress();
-            checkAndShowSoftWarning();
             autoSave();
         });
     });
@@ -418,37 +417,6 @@ function handleSubmit(event) {
     }
 }
 
-// Check and Show Soft Warning
-let warningTimeout = null;
-
-function checkAndShowSoftWarning() {
-    const allStatusFields = document.querySelectorAll('input[type="radio"][name$="_status"]:checked');
-    let hasNonOkSelection = false;
-    
-    allStatusFields.forEach(radio => {
-        if (radio.value !== 'ok') {
-            hasNonOkSelection = true;
-        }
-    });
-    
-    const overlay = document.getElementById('softWarningOverlay');
-    
-    if (hasNonOkSelection) {
-        // Show the soft warning
-        overlay.classList.add('show');
-        
-        // Clear any existing timeout
-        if (warningTimeout) {
-            clearTimeout(warningTimeout);
-        }
-        
-        // Auto-hide after 4 seconds
-        warningTimeout = setTimeout(() => {
-            overlay.classList.remove('show');
-        }, 4000);
-    }
-}
-
 // Show Notification
 function showNotification(message, isError = false) {
     const notification = document.getElementById('notification');
@@ -475,21 +443,6 @@ document.addEventListener('keydown', function(event) {
     if ((event.ctrlKey || event.metaKey) && event.key === 's') {
         event.preventDefault();
         saveDraft();
-    }
-});
-
-// Soft warning overlay click-to-dismiss
-document.addEventListener('DOMContentLoaded', function() {
-    const overlay = document.getElementById('softWarningOverlay');
-    if (overlay) {
-        overlay.addEventListener('click', function() {
-            // Clear timeout and immediately hide
-            if (warningTimeout) {
-                clearTimeout(warningTimeout);
-                warningTimeout = null;
-            }
-            overlay.classList.remove('show');
-        });
     }
 });
 
