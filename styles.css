@@ -283,6 +283,13 @@ body {
     z-index: 1;
 }
 
+.process-icon {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    transition: all 0.3s ease;
+}
+
 .icon-card:hover .icon-placeholder {
     transform: scale(1.1) rotate(5deg);
 }
