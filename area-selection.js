@@ -3,6 +3,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Get DOM elements
     const areaCheckboxes = document.querySelectorAll('input[name="area"]');
+    const selectAllCheckbox = document.getElementById('selectAll');
     const selectionSummary = document.getElementById('selectionSummary');
     const questionnaireType = document.getElementById('questionnaireType');
     const subAreaSelect = document.getElementById('subAreaSelect');
@@ -20,13 +21,30 @@ document.addEventListener('DOMContentLoaded', function() {
     areaCheckboxes.forEach(checkbox => {
         checkbox.addEventListener('change', handleAreaChange);
     });
+    selectAllCheckbox.addEventListener('change', handleSelectAllChange);
     questionnaireType.addEventListener('change', handleQuestionnaireTypeChange);
     subAreaSelect.addEventListener('change', validateForm);
     submitBtn.addEventListener('click', handleSubmit);
 
+    // Handle Select All Change
+    function handleSelectAllChange() {
+        const isChecked = selectAllCheckbox.checked;
+        
+        // Check or uncheck all individual area checkboxes
+        areaCheckboxes.forEach(checkbox => {
+            checkbox.checked = isChecked;
+        });
+        
+        // Trigger area change handler
+        handleAreaChange();
+    }
+
     // Handle Area Selection Change
     function handleAreaChange() {
         const selectedAreas = getSelectedAreas();
+        
+        // Update "All" checkbox state based on individual checkboxes
+        updateSelectAllState();
         
         // Update summary
         updateSelectionSummary(selectedAreas.length);
@@ -58,6 +76,20 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
+    // Update Select All State
+    function updateSelectAllState() {
+        // Check if all individual checkboxes are checked
+        const allChecked = Array.from(areaCheckboxes).every(checkbox => checkbox.checked);
+        const anyChecked = Array.from(areaCheckboxes).some(checkbox => checkbox.checked);
+        
+        // Update "All" checkbox without triggering its change event
+        if (allChecked && anyChecked) {
+            selectAllCheckbox.checked = true;
+        } else {
+            selectAllCheckbox.checked = false;
+        }
+    }
+    
     // Get Selected Areas
     function getSelectedAreas() {
         const selected = [];
@@ -72,9 +104,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // Update Selection Summary
     function updateSelectionSummary(count) {
         const summaryText = selectionSummary.querySelector('.summary-text');
+        const totalAreas = areaCheckboxes.length;
+        
         if (count === 0) {
             summaryText.textContent = '0 areas selected';
             summaryText.style.color = '#dc3545';
+        } else if (count === totalAreas) {
+            summaryText.textContent = `All areas selected (${count})`;
+            summaryText.style.color = '#08954C';
         } else if (count === 1) {
             summaryText.textContent = '1 area selected';
             summaryText.style.color = '#08954C';

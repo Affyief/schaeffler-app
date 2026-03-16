@@ -709,6 +709,32 @@ body {
     transition: all 0.3s ease;
 }
 
+/* Special styling for "All" checkbox */
+.checkbox-all {
+    background: linear-gradient(135deg, #f0f8ff 0%, #e8f5e9 100%);
+    border: 2px solid #08954C;
+    font-weight: 600;
+}
+
+.checkbox-all .checkbox-text {
+    color: #08954C;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.checkbox-all:hover {
+    background: linear-gradient(135deg, #e8f5e9 0%, #d0f0d0 100%);
+    border-color: #067038;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(8, 149, 76, 0.25);
+}
+
+.checkbox-all input[type="checkbox"]:checked ~ .checkbox-custom {
+    background: linear-gradient(135deg, #067038 0%, #08954C 100%);
+    border-color: #067038;
+}
+
+
 .selection-summary {
     margin-top: 1rem;
     padding: 0.75rem 1rem;
