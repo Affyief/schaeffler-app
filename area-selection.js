@@ -30,13 +30,27 @@ document.addEventListener('DOMContentLoaded', function() {
     function handleSelectAllChange() {
         const isChecked = selectAllCheckbox.checked;
         
+        console.log('Select All clicked:', isChecked);
+        
+        // Temporarily remove event listeners to avoid multiple calls
+        areaCheckboxes.forEach(checkbox => {
+            checkbox.removeEventListener('change', handleAreaChange);
+        });
+        
         // Check or uncheck all individual area checkboxes
         areaCheckboxes.forEach(checkbox => {
             checkbox.checked = isChecked;
         });
         
-        // Trigger area change handler
+        // Re-add event listeners
+        areaCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', handleAreaChange);
+        });
+        
+        // Call handleAreaChange once after all updates
         handleAreaChange();
+        
+        console.log('All checkboxes updated, selected count:', getSelectedAreas().length);
     }
 
     // Handle Area Selection Change
