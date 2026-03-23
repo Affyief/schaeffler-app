@@ -1,0 +1,467 @@
+// Questionnaire Full - JavaScript
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Display sub-assembly header
+    displaySubAssemblyHeader();
+    
+    // Filter questions by selected areas first
+    filterQuestionsBySelectedAreas();
+    
+    // Initialize
+    loadSavedData();
+    setupEventListeners();
+    
+    // Pre-select all questions to "Not Relevant"
+    preselectNotRelevant();
+    
+    updateProgress();
+    
+    // Auto-save every 30 seconds
+    setInterval(autoSave, 30000);
+});
+
+// Display Sub-Assembly Header
+function displaySubAssemblyHeader() {
+    try {
+        console.log('=== Displaying Sub-Assembly Header ===');
+        const subAssembliesData = localStorage.getItem('dfm_subassemblies');
+        console.log('Raw localStorage data:', subAssembliesData);
+        
+        if (!subAssembliesData) {
+            console.log('No sub-assembly data found in localStorage');
+            return;
+        }
+        
+        const subAssemblies = JSON.parse(subAssembliesData);
+        console.log('Parsed sub-assemblies:', subAssemblies);
+        console.log('Sub-assemblies type:', typeof subAssemblies);
+        console.log('Is array:', Array.isArray(subAssemblies));
+        
+        // Check if it's an array directly or wrapped in an object
+        let subAssembliesArray = [];
+        if (Array.isArray(subAssemblies)) {
+            subAssembliesArray = subAssemblies;
+        } else if (subAssemblies.subAssemblies && Array.isArray(subAssemblies.subAssemblies)) {
+            subAssembliesArray = subAssemblies.subAssemblies;
+        }
+        
+        console.log('Final sub-assemblies array:', subAssembliesArray);
+        
+        if (subAssembliesArray.length === 0) {
+            console.log('No sub-assemblies in array');
+            return;
+        }
+        
+        // Use the first sub-assembly
+        const subAssembly = subAssembliesArray[0];
+        console.log('First sub-assembly:', subAssembly);
+        
+        const nameElement = document.getElementById('subassembly-name');
+        const imageElement = document.getElementById('thumbnail-image');
+        const placeholderElement = document.getElementById('thumbnail-placeholder');
+        
+        if (nameElement && subAssembly.name) {
+            nameElement.textContent = subAssembly.name;
+            console.log('Set name to:', subAssembly.name);
+        } else {
+            console.log('Name element or sub-assembly name not found');
+        }
+        
+        // Get images from separate storage
+        const productImages = localStorage.getItem('dfm_product_images');
+        console.log('Product images data:', productImages);
+        
+        if (productImages && imageElement && placeholderElement) {
+            try {
+                const imagesData = JSON.parse(productImages);
+                console.log('Parsed images data:', imagesData);
+                
+                // Get images for first sub-assembly (index 0)
+                const subAssemblyImages = imagesData[0];
+                console.log('Images for sub-assembly 0:', subAssemblyImages);
+                
+                if (subAssemblyImages && subAssemblyImages.length > 0) {
+                    // Use first image as thumbnail
+                    const firstImage = subAssemblyImages[0];
+                    console.log('First image:', firstImage);
+                    
+                    if (firstImage.dataUrl) {
+                        imageElement.src = firstImage.dataUrl;
+                        imageElement.style.display = 'block';
+                        placeholderElement.style.display = 'none';
+                        console.log('Set thumbnail image from product images');
+                    }
+                } else {
+                    console.log('No images found for first sub-assembly');
+                }
+            } catch (imageError) {
+                console.error('Error parsing product images:', imageError);
+            }
+        } else {
+            console.log('Product images or image elements not found');
+        }
+        
+        console.log('=== Sub-Assembly Header Display Complete ===');
+    } catch (error) {
+        console.error('Error displaying sub-assembly header:', error);
+        console.error('Error stack:', error.stack);
+    }
+}
+
+// Pre-select all questions to "Not Relevant"
+function preselectNotRelevant() {
+    try {
+        // Find all "Not Relevant" radio buttons
+        const notRelevantButtons = document.querySelectorAll('input[type="radio"][value="not_relevant"]');
+        
+        notRelevantButtons.forEach(radio => {
+            // Only check if nothing is already selected for this question
+            const questionName = radio.name;
+            const anyChecked = document.querySelector(`input[name="${questionName}"]:checked`);
+            
+            if (!anyChecked) {
+                radio.checked = true;
+            }
+        });
+        
+        console.log('Pre-selected all unchecked questions to "Not Relevant"');
+        updateProgress();
+    } catch (error) {
+        console.error('Error pre-selecting questions:', error);
+    }
+}
+
+// Filter Questions by Selected Areas
+function filterQuestionsBySelectedAreas() {
+    try {
+        console.log('=== Filtering Questions by Selected Areas ===');
+        
+        // Get selected areas from localStorage
+        const areaSelection = localStorage.getItem('dfm_area_selection');
+        console.log('Raw area selection:', areaSelection);
+        
+        if (!areaSelection) {
+            console.log('No area selection found, showing all questions');
+            return;
+        }
+        
+        const data = JSON.parse(areaSelection);
+        const selectedAreas = data.areas || [];
+        
+        console.log('Parsed data:', data);
+        console.log('Selected areas:', selectedAreas);
+        
+        if (selectedAreas.length === 0) {
+            console.log('No areas selected, showing all questions');
+            return;
+        }
+        
+        // Map area values to question prefixes
+        const areaToPrefix = {
+            'general': 'GE',
+            'pcb': 'PCB',
+            'bare_die': 'BD',
+            'assembly': 'AS',
+            'material': 'MAT',
+            'test': 'TE',
+            'results': 'RS',
+            'others': 'OT'
+        };
+        
+        // Get prefixes for selected areas
+        const selectedPrefixes = selectedAreas.map(area => areaToPrefix[area]).filter(Boolean);
+        console.log('Selected prefixes to show:', selectedPrefixes);
+        
+        if (selectedPrefixes.length === 0) {
+            console.log('No valid prefixes, showing all questions');
+            return;
+        }
+        
+        // Get all section cards (each individual question section)
+        const sectionCards = document.querySelectorAll('.section-card');
+        console.log('Total section cards found:', sectionCards.length);
+        
+        let hiddenCount = 0;
+        let shownCount = 0;
+        
+        sectionCards.forEach(card => {
+            // Get the section badge which contains the prefix (e.g., "GE 1.0", "PCB 2.1")
+            const badge = card.querySelector('.section-badge');
+            if (!badge) {
+                console.log('No badge found for a card, showing by default');
+                card.style.display = 'block';
+                shownCount++;
+                return;
+            }
+            
+            const badgeText = badge.textContent.trim();
+            // Extract just the prefix part (e.g., "GE" from "GE 1.0")
+            const prefix = badgeText.split(' ')[0];
+            
+            // Check if this section's prefix is in the selected prefixes
+            const shouldShow = selectedPrefixes.includes(prefix);
+            
+            if (shouldShow) {
+                card.style.display = 'block';
+                shownCount++;
+            } else {
+                card.style.display = 'none';
+                hiddenCount++;
+            }
+        });
+        
+        console.log(`Filtering complete: ${shownCount} sections shown, ${hiddenCount} sections hidden`);
+        console.log('=== Area Filtering Complete ===');
+        
+        // Update the visible questions count
+        setTimeout(() => {
+            updateProgress();
+        }, 100);
+        
+    } catch (e) {
+        console.error('Error filtering questions:', e);
+    }
+}
+
+// Setup Event Listeners
+function setupEventListeners() {
+    const form = document.getElementById('questionnaireForm');
+    const saveDraftBtn = document.getElementById('saveDraftBtn');
+    const radioButtons = document.querySelectorAll('input[type="radio"]');
+    
+    // Form submission
+    form.addEventListener('submit', handleSubmit);
+    
+    // Save draft button
+    saveDraftBtn.addEventListener('click', saveDraft);
+    
+    // Radio button changes
+    radioButtons.forEach(radio => {
+        radio.addEventListener('change', function() {
+            updateQuestionCard(this);
+            updateProgress();
+            autoSave();
+        });
+    });
+    
+    // Input changes for auto-save
+    const inputs = form.querySelectorAll('input, textarea');
+    inputs.forEach(input => {
+        input.addEventListener('change', autoSave);
+    });
+}
+
+// Update Question Card Status
+function updateQuestionCard(radio) {
+    const questionCard = radio.closest('.question-card');
+    if (questionCard && radio.checked) {
+        questionCard.classList.add('completed');
+    }
+}
+
+// Update Progress
+function updateProgress() {
+    // Only count visible question cards (not hidden by area filter)
+    const allQuestionCards = document.querySelectorAll('.question-card');
+    const visibleQuestionCards = Array.from(allQuestionCards).filter(card => {
+        const sectionGroup = card.closest('.section-group');
+        return !sectionGroup || sectionGroup.style.display !== 'none';
+    });
+    
+    const totalQuestions = visibleQuestionCards.length;
+    const completedQuestions = visibleQuestionCards.filter(card => card.classList.contains('completed')).length;
+    const percentage = totalQuestions > 0 ? Math.round((completedQuestions / totalQuestions) * 100) : 0;
+    
+    // Update progress bar
+    const progressFill = document.getElementById('progressFill');
+    progressFill.style.width = percentage + '%';
+    
+    // Update text
+    document.getElementById('progressText').textContent = 
+        `${completedQuestions} of ${totalQuestions} questions completed`;
+    document.getElementById('progressPercent').textContent = percentage + '%';
+}
+
+// Get Form Data
+function getFormData() {
+    const form = document.getElementById('questionnaireForm');
+    const formData = new FormData(form);
+    const data = {};
+    
+    for (let [key, value] of formData.entries()) {
+        data[key] = value;
+    }
+    
+    return data;
+}
+
+// Save Draft
+function saveDraft() {
+    const data = getFormData();
+    
+    try {
+        localStorage.setItem('dfm_questionnaire_full_draft', JSON.stringify(data));
+        localStorage.setItem('dfm_questionnaire_full_timestamp', new Date().toISOString());
+        
+        showNotification('Draft saved successfully!');
+    } catch (error) {
+        console.error('Error saving draft:', error);
+        showNotification('Error saving draft', true);
+    }
+}
+
+// Auto Save
+function autoSave() {
+    const data = getFormData();
+    
+    try {
+        localStorage.setItem('dfm_questionnaire_full_draft', JSON.stringify(data));
+        localStorage.setItem('dfm_questionnaire_full_timestamp', new Date().toISOString());
+    } catch (error) {
+        console.error('Error auto-saving:', error);
+    }
+}
+
+// Load Saved Data
+function loadSavedData() {
+    try {
+        const savedData = localStorage.getItem('dfm_questionnaire_full_draft');
+        
+        if (savedData) {
+            const data = JSON.parse(savedData);
+            const form = document.getElementById('questionnaireForm');
+            
+            // Populate form fields
+            Object.keys(data).forEach(key => {
+                const element = form.elements[key];
+                if (element) {
+                    if (element.type === 'radio') {
+                        const radio = form.querySelector(`input[name="${key}"][value="${data[key]}"]`);
+                        if (radio) {
+                            radio.checked = true;
+                            updateQuestionCard(radio);
+                        }
+                    } else {
+                        element.value = data[key];
+                    }
+                }
+            });
+            
+            updateProgress();
+            
+            // Show notification that draft was restored
+            setTimeout(() => {
+                showNotification('Draft restored from previous session');
+            }, 500);
+        }
+    } catch (error) {
+        console.error('Error loading saved data:', error);
+    }
+}
+
+// Handle Form Submission
+function handleSubmit(event) {
+    event.preventDefault();
+    
+    const form = event.target;
+    
+    // Validate that all status fields are filled
+    const allStatusFields = document.querySelectorAll('input[type="radio"][name$="_status"]');
+    const statusGroups = {};
+    
+    allStatusFields.forEach(radio => {
+        const groupName = radio.name;
+        if (!statusGroups[groupName]) {
+            statusGroups[groupName] = false;
+        }
+        if (radio.checked) {
+            statusGroups[groupName] = true;
+        }
+    });
+    
+    const allCompleted = Object.values(statusGroups).every(status => status === true);
+    
+    if (!allCompleted) {
+        showNotification('Please complete all required status selections', true);
+        return;
+    }
+    
+    // Get form data
+    const formData = getFormData();
+    
+    // Add metadata
+    formData.submittedAt = new Date().toISOString();
+    formData.totalQuestions = document.querySelectorAll('.question-card').length;
+    formData.completedQuestions = document.querySelectorAll('.question-card.completed').length;
+    
+    // Save to localStorage
+    try {
+        localStorage.setItem('dfm_questionnaire_full', JSON.stringify(formData));
+        
+        // Clear draft
+        localStorage.removeItem('dfm_questionnaire_full_draft');
+        localStorage.removeItem('dfm_questionnaire_full_timestamp');
+        
+        // Show success notification
+        showNotification('Assessment submitted successfully! Proceeding...');
+        
+        // Navigate to next page after delay
+        setTimeout(() => {
+            // Placeholder: Navigate to next step in workflow
+            window.location.href = 'overall-status.html'; // Navigate to Overall Status page
+        }, 1500);
+        
+    } catch (error) {
+        console.error('Error submitting form:', error);
+        showNotification('Error submitting assessment', true);
+    }
+}
+
+// Show Notification
+function showNotification(message, isError = false) {
+    const notification = document.getElementById('notification');
+    const notificationText = document.getElementById('notificationText');
+    
+    notificationText.textContent = message;
+    
+    if (isError) {
+        notification.style.background = 'linear-gradient(135deg, #f44336 0%, #e53935 100%)';
+    } else {
+        notification.style.background = 'linear-gradient(135deg, #08954C 0%, #0ab05e 100%)';
+    }
+    
+    notification.classList.add('show');
+    
+    setTimeout(() => {
+        notification.classList.remove('show');
+    }, 3000);
+}
+
+// Keyboard Shortcuts
+document.addEventListener('keydown', function(event) {
+    // Ctrl/Cmd + S to save draft
+    if ((event.ctrlKey || event.metaKey) && event.key === 's') {
+        event.preventDefault();
+        saveDraft();
+    }
+});
+
+// Export functionality (for future use)
+function exportToJSON() {
+    const data = getFormData();
+    const dataStr = JSON.stringify(data, null, 2);
+    const dataBlob = new Blob([dataStr], { type: 'application/json' });
+    
+    const url = URL.createObjectURL(dataBlob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'dfm-questionnaire-full-' + new Date().toISOString().split('T')[0] + '.json';
+    link.click();
+    
+    URL.revokeObjectURL(url);
+}
+
+// Print functionality (for future use)
+function printQuestionnaire() {
+    window.print();
+}

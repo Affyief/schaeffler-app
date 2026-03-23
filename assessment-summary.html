@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Assessment Summary - Schaeffler DPFC</title>
+    <link rel="stylesheet" href="assessment-summary-styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left"></div>
+            <div class="header-center">
+                <h1>Schaeffler DPFC</h1>
+            </div>
+            <div class="header-right">
+                <div class="login-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </div>
+                <div class="logo">
+                    <img src="assets/schaeffler-logo.jpg" 
+                         alt="Schaeffler Logo" 
+                         class="logo-image"
+                         loading="eager">
+                    <div class="logo-placeholder" style="display: none;">Schaeffler</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Container -->
+        <div class="main-container">
+            <!-- Sidebar -->
+            <aside class="sidebar" id="sidebar">
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+                <nav class="sidebar-nav">
+                    <ul>
+                        <li>
+                            <a href="index.html" class="nav-item">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                                </svg>
+                                <span class="nav-text">Home</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-item">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                                </svg>
+                                <span class="nav-text">Catalog</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-item active">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                                </svg>
+                                <span class="nav-text">My Processes</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-item">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                                </svg>
+                                <span class="nav-text">Feedback</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-item">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                                </svg>
+                                <span class="nav-text">Support</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="main-content" id="mainContent">
+            <!-- Breadcrumb -->
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span>›</span>
+                <a href="dfm.html">Design for Manufacturing</a>
+                <span>›</span>
+                <a href="dfm-config.html">Configuration</a>
+                <span>›</span>
+                <a href="project-details.html">Project Details</a>
+                <span>›</span>
+                <a href="participant-details.html">Participant Details</a>
+                <span>›</span>
+                <a href="subassembly-details.html">Sub-Assembly Details</a>
+                <span>›</span>
+                <a href="product-images.html">Product Images</a>
+                <span>›</span>
+                <a href="area-selection.html">Area Selection</a>
+                <span>›</span>
+                <a href="questionnaire-full.html">Full Questionnaire</a>
+                <span>›</span>
+                <a href="overall-status.html">Overall Status</a>
+                <span>›</span>
+                <span class="current">Assessment Summary</span>
+            </div>
+
+            <!-- Page Title -->
+            <div class="page-header">
+                <h2>DFM Assessment Summary</h2>
+                <p class="page-description">Complete overview of your Design for Manufacturing assessment results.</p>
+            </div>
+
+            <!-- Sub-Assembly Header -->
+            <div class="summary-section">
+                <h3 class="section-title">Sub-Assembly Information</h3>
+                <div id="subassemblyInfo" class="info-card">
+                    <div class="subassembly-thumbnail">
+                        <span id="thumbnail-placeholder">📦</span>
+                        <img id="thumbnail-image" src="" alt="Sub-assembly" style="display: none;">
+                    </div>
+                    <div class="subassembly-details">
+                        <h4 id="subassembly-name">No sub-assembly selected</h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Overall Status Section -->
+            <div class="summary-section">
+                <h3 class="section-title">Overall Assessment Status</h3>
+                <div id="overallStatusDisplay" class="status-display">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Statistics Section -->
+            <div class="summary-section">
+                <h3 class="section-title">Assessment Statistics</h3>
+                <div id="statisticsDisplay" class="statistics-grid">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Management Summary Section -->
+            <div class="summary-section">
+                <h3 class="section-title">Management Summary</h3>
+                <div id="managementSummaryDisplay" class="summary-text">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="button-group">
+                <button type="button" class="btn btn-primary" onclick="finishAssessment()">
+                    <span>✓ Finish & Return to Home</span>
+                </button>
+            </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="assessment-summary.js"></script>
+</body>
+</html>
